@@ -115,4 +115,10 @@ public class API {
         System.out.println("time :"+Time.getTime() );
         return ans;
     }
+    public static Map<String,Object> logout(Map<String,Object> income){
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.LOGOUT);
+        ans.put("answer",new Boolean(true));
+        return ans;
+    }
 }
