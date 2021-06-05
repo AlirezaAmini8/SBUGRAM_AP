@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="330.0" prefWidth="457.0" style="-fx-background-color: rgb(23,32,42);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="title_field" layoutX="9.0" layoutY="61.0" promptText="Title">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="PostImage" fitHeight="132.0" fitWidth="188.0" layoutX="228.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profileImage" fitHeight="51.0" fitWidth="97.0" layoutX="55.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="username_label" layoutX="159.0" layoutY="23.0" prefHeight="17.0" prefWidth="149.0" textFill="#00f5ff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Description_field" layoutX="9.0" layoutY="103.0" prefHeight="71.0" prefWidth="188.0" promptText="Description">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="postTime" layoutX="76.0" layoutY="187.0" prefHeight="25.0" prefWidth="124.0" textFill="#00f5ff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="postDate" layoutX="281.0" layoutY="187.0" prefHeight="25.0" prefWidth="124.0" textFill="#00f5ff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="290.0" prefHeight="30.0" prefWidth="37.0" text="Likes:" textFill="#00f5ff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="likesNum_label" layoutX="112.0" layoutY="291.0" prefHeight="30.0" prefWidth="53.0" textFill="#00f5ff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="257.0" layoutY="296.0" text="Reposts:" textFill="#00f5ff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="repostsNum_label" layoutX="312.0" layoutY="296.0" prefHeight="17.0" prefWidth="62.0" textFill="#00f5ff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="liked_label" layoutX="412.0" layoutY="252.0" text="Liked!" textFill="#48ff00" visible="false" />
+      <Label fx:id="disliked_label" layoutX="412.0" layoutY="252.0" text="Disliked!" textFill="RED" visible="false" />
+      <Label layoutX="17.0" layoutY="191.0" text="ShareTime:" textFill="#e5f500" />
+      <Label layoutX="217.0" layoutY="191.0" text="ShareDate:" textFill="#e5f500" />
+      <ImageView fx:id="Like_button" fitHeight="39.0" fitWidth="37.0" layoutX="374.0" layoutY="242.0" onMouseClicked="#Like">
+         <image>
+            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_facebook_like_64px.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ViewCmnt_button" layoutX="275.0" layoutY="236.0" onMouseClicked="#ViewCmnt">
+         <image>
+            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_search_chat_48px.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="AddComment_button" layoutX="159.0" layoutY="236.0" onMouseClicked="#AddComment">
+         <image>
+            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_add_to_chat_48px.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Repost_button" fitHeight="48.0" fitWidth="49.0" layoutX="59.0" layoutY="232.0" onMouseClicked="#Repost">
+         <image>
+            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_create_new_child_post_40px.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

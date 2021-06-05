@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SBU.Client.Controller.SignUpPageController">
+   <content>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);">
+         <children>
+            <TextField fx:id="Name" layoutX="131.0" layoutY="204.0" prefHeight="30.0" prefWidth="166.0" promptText="Name">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="LastName" layoutX="131.0" layoutY="243.0" prefHeight="30.0" prefWidth="166.0" promptText="Last name">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="BirthDate" layoutX="131.0" layoutY="284.0" prefHeight="30.0" prefWidth="166.0" promptText="Birth date">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="profile_image" fitHeight="115.0" fitWidth="118.0" layoutX="176.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="Location" layoutX="131.0" layoutY="325.0" prefHeight="30.0" prefWidth="166.0" promptText="City/Country">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="ProfilePhoto" layoutX="151.0" layoutY="159.0" mnemonicParsing="false" onAction="#AddProfilePhoto" prefHeight="29.0" prefWidth="126.0" style="-fx-background-color: rgb(84, 153, 199);" text="add profile photo" textFill="#040b83">
+               <font>
+                  <Font name="Book Antiqua Bold" size="13.0" />
+               </font>
+            </Button>
+            <TextField fx:id="username_field" layoutX="131.0" layoutY="365.0" prefHeight="30.0" prefWidth="166.0" promptText="Enter username">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="password_field" layoutX="131.0" layoutY="407.0" prefHeight="30.0" prefWidth="166.0" promptText="Enter password">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="sign_up_button" layoutX="169.0" layoutY="486.0" mnemonicParsing="false" onAction="#SignUp" prefHeight="37.0" prefWidth="95.0" style="-fx-background-color: rgb(84, 153, 199);" text="Sign Up" textFill="#040b83">
+               <font>
+                  <Font name="Book Antiqua Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="44.0" layoutY="607.0" prefHeight="17.0" prefWidth="175.0" text="already have an account?" textFill="#00f5ff" />
+            <Button fx:id="Loginbutton" layoutX="185.0" layoutY="603.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: rgb(84, 153, 199);" text="Login" textFill="#040b83">
+               <font>
+                  <Font name="Book Antiqua" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="invalid_label" layoutX="168.0" layoutY="529.0" prefHeight="17.0" prefWidth="157.0" text="Invalid password :(" textAlignment="CENTER" textFill="RED" visible="false" />
+            <TextField fx:id="Color_field" layoutX="133.0" layoutY="447.0" prefHeight="30.0" prefWidth="166.0" promptText="Enter favorite Color">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="86.0" layoutY="572.0" prefHeight="17.0" prefWidth="149.0" text="forgot password?" textFill="#00f5ff" />
+            <Button fx:id="forgotpass_field" layoutX="185.0" layoutY="568.0" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: rgb(84, 153, 199);" text="Get it" textFill="#040b83">
+               <font>
+                  <Font name="Book Antiqua" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="successful_label" layoutX="184.0" layoutY="529.0" text="successful !" textFill="LIME" visible="false">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label fx:id="failedusername_label" layoutX="146.0" layoutY="529.0" text="username have token before :(" textFill="RED" visible="false" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
