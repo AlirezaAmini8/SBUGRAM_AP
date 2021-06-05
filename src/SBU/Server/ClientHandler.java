@@ -56,10 +56,11 @@ public class ClientHandler implements Runnable {
                         answer=API.likepost(income);
                     case REPOST:
                         answer=API.repost(income);
-                    /*case LOGOUT:
+                    case UPDATE_INFO:
+                        answer=API.updateinfo(income);
+                    case LOGOUT:
                         answer = API.logout(income);
-                        clientOnline = false;
-                        break;*/
+                        break;
 
                 }
                 socketOut.writeObject(answer);

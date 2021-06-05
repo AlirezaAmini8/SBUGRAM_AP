@@ -2,7 +2,6 @@ package SBU.Client.Controller;
 
 import SBU.Client.Model.*;
 import SBU.Common.Profile;
-import SBU.Server.ServerEXE;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -49,7 +48,7 @@ public class AddPostController {
             }
         }
         if (!Repetitious.isVisible()) {
-            currentpost.setName(profile.getName());
+            currentpost.setUsername(profile.getUserName());
             currentpost.setDescription(description_field.getText());
             currentpost.setPostimage(image);
             currentpost.setDate(java.time.LocalDate.now());
@@ -64,7 +63,7 @@ public class AddPostController {
 
             //empty fields
             currentpost.setTitle("");
-            currentpost.setName("");
+            currentpost.setUsername("");
             currentpost.setDate(null);
             currentpost.setTime(null);
             currentpost.setDescription("");

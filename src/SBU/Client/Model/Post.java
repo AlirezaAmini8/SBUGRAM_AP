@@ -1,9 +1,7 @@
 package SBU.Client.Model;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Objects;
 
 public class Post {
@@ -15,12 +13,19 @@ public class Post {
 
 
     private Integer repostsnum;
-    private String name;
+
+
+
+    private String username;
     private String title;
     private String description;
     private byte[] postimage;
     private LocalDate date;
     private LocalTime time;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public void setRepostsnum(Integer repostsnum) {
         this.repostsnum = repostsnum;
@@ -78,14 +83,9 @@ public class Post {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
     @Override
     public boolean equals(Object o) {

@@ -78,4 +78,20 @@ public class API{
         if ( recieved.get("answer") == null ) return false;
         return (Boolean) recieved.get("answer");
     }
+    public static Boolean updateinfo(Profile profile){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Command.UPDATE_INFO);
+        toSend.put("profile", profile);
+        Map<String,Object> recieved = ClientNetworker.serve(toSend);
+        if ( recieved.get("answer") == null ) return false;
+        return (Boolean) recieved.get("answer");
+    }
+    public static Boolean deleteaccount(Profile profile){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Command.DELETE_ACCOUNT);
+        toSend.put("profile", profile);
+        Map<String,Object> recieved = ClientNetworker.serve(toSend);
+        if ( recieved.get("answer") == null ) return false;
+        return (Boolean) recieved.get("answer");
+    }
 }

@@ -17,7 +17,6 @@ public class ServerEXE {
 
     public static Map<String,Profile> profiles=null;
     public static Set<Post> posts = null;
-    public static Map<Profile, Post> eachuserpost=new HashMap<>();
 
     public static boolean isServerUp(){
         return isServerUp;

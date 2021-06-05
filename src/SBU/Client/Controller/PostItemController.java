@@ -40,7 +40,7 @@ public class PostItemController {
 
     //this anchor pane is returned to be set as the list view item
     public AnchorPane init() {
-        username_label.setText(post.getName());
+        username_label.setText(post.getUsername());
         title_field.setText(post.getTitle());
         profileImage.setImage(new Image(new ByteArrayInputStream(SignUpPageController.profile.getProfilePhoto())));
         postTime.setText(post.getTime().toString());

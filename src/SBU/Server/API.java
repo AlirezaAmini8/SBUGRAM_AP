@@ -69,6 +69,7 @@ public class API {
         Profile profile= (Profile) income.get("profile");
         String newpassword= (String) income.get("newpassword");
         profile.setPassword(newpassword);
+        ServerEXE.profiles.replace(profile.getUserName(),profile);
         Map<String,Object> ans=new HashMap<>();
         ans.put("command",Command.SET_PASSWORD);
         ans.put("answer",new Boolean(true));
@@ -79,7 +80,6 @@ public class API {
     public static Map<String,Object> addpost(Map<String ,Object> income) {
         Profile profile= (Profile) income.get("profile");
         Post newpost= (Post) income.get("post");
-        ServerEXE.eachuserpost.put(profile,newpost);
         ServerEXE.posts.add(newpost);
         Map<String,Object> ans=new HashMap<>();
         ans.put("command",Command.ADD_POST);
@@ -107,7 +107,6 @@ public class API {
     public static Map<String,Object> repost(Map<String ,Object> income) {
         Profile profile= (Profile) income.get("profile");
         Post repost= (Post) income.get("repost");
-        ServerEXE.eachuserpost.put(profile,repost);
         Map<String,Object> ans=new HashMap<>();
         ans.put("command",Command.REPOST);
         ans.put("answer", new Boolean(true));
@@ -119,6 +118,39 @@ public class API {
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.LOGOUT);
         ans.put("answer",new Boolean(true));
+        System.out.println("logged out.");
+        System.out.println("time :"+Time.getTime());
+        return ans;
+    }
+    public static Map<String,Object> updateinfo(Map<String,Object> income){
+
+        Profile newProfile = (Profile) income.get("profile");
+        String username = newProfile.getUserName();
+        ServerEXE.profiles.replace(username,newProfile);
+        DBManager.getInstance().updateDataBase(); // save to local file
+
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.UPDATE_INFO);
+        ans.put("answer",new Boolean(true));
+        System.out.println("info updated.");
+        System.out.println("time :"+Time.getTime());
+        return ans;
+    }
+    public static Map<String,Object> deleteaccount (Map<String,Object> income){
+        Profile newProfile = (Profile) income.get("profile");
+        String username = newProfile.getUserName();
+        for(Post post:ServerEXE.posts){
+            if(post.getUsername().equals(username)){
+                ServerEXE.posts.remove(post);
+            }
+        }
+        ServerEXE.profiles.remove(username,newProfile);
+        DBManager.getInstance().updateDataBase(); // save to local file
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.DELETE_ACCOUNT);
+        ans.put("answer",new Boolean(true));
+        System.out.println( username+"deleted account!");
+        System.out.println("time :"+Time.getTime());
         return ans;
     }
 }
