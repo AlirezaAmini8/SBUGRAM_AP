@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 public class SignUpPageController {
     public Label failedusername_label;
     public Label unsuccessful_label;
-    Profile profile;
+    public static Profile profile;
     @FXML
     public Button Loginbutton;
     public Button sign_up_button;

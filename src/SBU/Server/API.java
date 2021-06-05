@@ -52,5 +52,25 @@ public class API {
 
         return ans;
     }
-
+    public static Map<String,Object> forgotpassword(Map<String ,Object> income){
+        Profile profile = (Profile) income.get("profile");
+        String favoritecolor= profile.getFavoriteColor();
+        Map<String,Object> ans=new HashMap<>();
+        ans.put("command",Command.FORGOT_PASSWORD);
+        ans.put("answer",favoritecolor);
+        System.out.println("forgotten password: "+ profile.getPassword());
+        System.out.println("time :"+Time.getTime());
+        return ans;
+    }
+    public static Map<String,Object> setpassword(Map<String ,Object> income) {
+        Profile profile= (Profile) income.get("profile");
+        String newpassword= (String) income.get("newpassword");
+        profile.setPassword(newpassword);
+        Map<String,Object> ans=new HashMap<>();
+        ans.put("command",Command.SET_PASSWORD);
+        ans.put("answer",new Boolean(true));
+        System.out.println(profile.getUserName()+"password changed to:"+ newpassword);
+        System.out.println("time :"+Time.getTime() );
+        return ans;
+    }
 }

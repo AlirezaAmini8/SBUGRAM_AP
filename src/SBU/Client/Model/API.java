@@ -30,4 +30,20 @@ public class API{
         if ( recieved.get("answer") == null ) return null;
         return (Boolean) recieved.get("answer");
     }
+    public static boolean forgotpassword(Profile profile,String colorcheck){
+        Map<String,Object> toSend=new HashMap<>();
+        toSend.put("command",Command.FORGOT_PASSWORD);
+        toSend.put("profile",profile);
+        toSend.put("color",colorcheck);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (boolean) recieved.get("answer");
+    }
+    public static boolean setpassword(Profile profile,String password){
+        Map<String,Object> toSend=new HashMap<>();
+        toSend.put("command",Command.SET_PASSWORD);
+        toSend.put("profile",profile);
+        toSend.put("newpassword",password);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (boolean) recieved.get("answer");
+    }
 }
