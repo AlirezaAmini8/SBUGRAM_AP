@@ -75,10 +75,11 @@
             <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_add_to_chat_48px.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="Repost_button" fitHeight="48.0" fitWidth="49.0" layoutX="59.0" layoutY="232.0" onMouseClicked="#Repost">
+      <ImageView fx:id="Repost_button" fitHeight="57.0" fitWidth="58.0" layoutX="56.0" layoutY="235.0" onMouseClicked="#Repost">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_create_new_child_post_40px.png" />
+            <Image url="@../../../../../../AppData/Local/Temp/icons8_counterclockwise_arrows_48px_1.png" />
          </image>
       </ImageView>
+      <Label fx:id="reposted_label" layoutX="9.0" layoutY="261.0" text="reposted!" textFill="#2fff00" visible="false" />
    </children>
 </AnchorPane>

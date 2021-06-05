@@ -38,7 +38,7 @@ public class PageLoader {
     }
 
     public Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/SBU\\Client\\View/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("./View/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
@@ -51,7 +51,7 @@ public class PageLoader {
 
     //load fxmls with a special controller set in the runtime
     public void load(String fxml, Object controller) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/SBU\\Client\\View/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("./View/" + fxml + ".fxml"));
         fxmlLoader.setController(controller);
         fxmlLoader.load();
     }

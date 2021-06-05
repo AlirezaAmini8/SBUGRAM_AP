@@ -50,6 +50,12 @@ public class ClientHandler implements Runnable {
                         answer=API.forgotpassword(income);
                     case SET_PASSWORD:
                         answer=API.setpassword(income);
+                    case ADD_POST:
+                        answer=API.addpost(income);
+                    case LIKE_POST:
+                        answer=API.likepost(income);
+                    case REPOST:
+                        answer=API.repost(income);
                     /*case LOGOUT:
                         answer = API.logout(income);
                         clientOnline = false;

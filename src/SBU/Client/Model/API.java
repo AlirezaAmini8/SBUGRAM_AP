@@ -46,4 +46,29 @@ public class API{
         Map<String,Object> recieved=ClientNetworker.serve(toSend);
         return (boolean) recieved.get("answer");
     }
+    public static boolean addpost(Profile profile,Post post){
+        Map<String,Object> toSend=new HashMap<>();
+        toSend.put("command",Command.ADD_POST);
+        toSend.put("profile",profile);
+        toSend.put("post",post);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (boolean) recieved.get("answer");
+    }
+    public static boolean likepost(Profile profile,Post post,boolean haslike){
+        Map<String,Object> toSend=new HashMap<>();
+        toSend.put("command",Command.LIKE_POST);
+        toSend.put("profile",profile);
+        toSend.put("post",post);
+        toSend.put("like",haslike);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (boolean) recieved.get("answer");
+    }
+    public static boolean repost(Profile profile,Post post){
+        Map<String,Object> toSend=new HashMap<>();
+        toSend.put("command",Command.LIKE_POST);
+        toSend.put("profile",profile);
+        toSend.put("repost",post);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (boolean) recieved.get("answer");
+    }
 }

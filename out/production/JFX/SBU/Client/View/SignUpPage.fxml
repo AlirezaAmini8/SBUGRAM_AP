@@ -76,6 +76,7 @@
                   <Font size="13.0" />
                </font></Label>
             <Label fx:id="failedusername_label" layoutX="146.0" layoutY="529.0" text="username have token before :(" textFill="RED" visible="false" />
+            <Label fx:id="unsuccessful_label" layoutX="176.0" layoutY="529.0" text="unsuccessful :(" textFill="RED" visible="false" />
          </children>
       </AnchorPane>
    </content>

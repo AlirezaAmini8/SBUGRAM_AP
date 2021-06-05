@@ -7,6 +7,14 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Post {
+
+
+
+    private  Integer likesnum;
+
+
+
+    private Integer repostsnum;
     private String name;
     private String title;
     private String description;
@@ -14,9 +22,26 @@ public class Post {
     private LocalDate date;
     private LocalTime time;
 
+    public void setRepostsnum(Integer repostsnum) {
+        this.repostsnum = repostsnum;
+    }
+
+    public void setLikesnum(Integer likesnum) {
+        this.likesnum = likesnum;
+    }
+
+    public Integer getLikesnum() {
+        return likesnum;
+    }
+
+    public Integer getRepostsnum() {
+        return repostsnum;
+    }
+
     public byte[] getPostimage() {
         return postimage;
     }
+
     public void setPostimage(byte[] postimage) {
         this.postimage = postimage;
     }

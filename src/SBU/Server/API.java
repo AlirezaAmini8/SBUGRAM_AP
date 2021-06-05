@@ -1,7 +1,10 @@
 package SBU.Server;
 
+import SBU.Client.Model.Post;
 import SBU.Common.*;
+import javafx.geometry.Pos;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,6 +73,45 @@ public class API {
         ans.put("command",Command.SET_PASSWORD);
         ans.put("answer",new Boolean(true));
         System.out.println(profile.getUserName()+"password changed to:"+ newpassword);
+        System.out.println("time :"+Time.getTime() );
+        return ans;
+    }
+    public static Map<String,Object> addpost(Map<String ,Object> income) {
+        Profile profile= (Profile) income.get("profile");
+        Post newpost= (Post) income.get("post");
+        ServerEXE.eachuserpost.put(profile,newpost);
+        ServerEXE.posts.add(newpost);
+        Map<String,Object> ans=new HashMap<>();
+        ans.put("command",Command.ADD_POST);
+        ans.put("answer",new Boolean(true));
+        System.out.println(profile.getUserName()+" added post");
+        System.out.println("time :"+Time.getTime() );
+        return ans;
+    }
+    public static Map<String,Object> likepost(Map<String ,Object> income) {
+        Profile profile= (Profile) income.get("profile");
+        Post newpost= (Post) income.get("post");
+        Boolean haslike= (Boolean) income.get("like");
+        Map<String,Object> ans=new HashMap<>();
+        ans.put("command",Command.LIKE_POST);
+        if(haslike) {
+            ans.put("answer", new Boolean(true));
+            System.out.println("liked :"+newpost.getTitle());
+        }else{
+            ans.put("answer", new Boolean(false));
+            System.out.println("disliked :"+newpost.getTitle());
+        }
+        System.out.println("time :"+Time.getTime() );
+        return ans;
+    }
+    public static Map<String,Object> repost(Map<String ,Object> income) {
+        Profile profile= (Profile) income.get("profile");
+        Post repost= (Post) income.get("repost");
+        ServerEXE.eachuserpost.put(profile,repost);
+        Map<String,Object> ans=new HashMap<>();
+        ans.put("command",Command.REPOST);
+        ans.put("answer", new Boolean(true));
+        System.out.println("reposted :"+repost.getTitle());
         System.out.println("time :"+Time.getTime() );
         return ans;
     }
