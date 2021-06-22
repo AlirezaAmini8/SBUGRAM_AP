@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.API;
+import Model.ClientEXE;
 import Model.PageLoader;
 import Model.Post;
 import javafx.scene.control.Label;
@@ -27,9 +28,7 @@ public class PostItemController {
     public ImageView Like_button;
     public Label likesNum_label;
     public Label repostsNum_label;
-    public Label liked_label;
-    public Label disliked_label;
-    public Label reposted_label;
+    public Label writer_label;
     Post post;
 
     //each list item will have its exclusive controller in runtime so we set the controller as we load the fxml
@@ -40,9 +39,10 @@ public class PostItemController {
 
     //this anchor pane is returned to be set as the list view item
     public AnchorPane init() {
+        writer_label.setText(post.getWriter());
         username_label.setText(post.getUsername());
         title_field.setText(post.getTitle());
-        profileImage.setImage(new Image(new ByteArrayInputStream(SignUpPageController.profile.getProfilePhoto())));
+        profileImage.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
         postTime.setText(post.getTime().toString());
         postDate.setText(post.getDate().toString());
         PostImage.setImage(new Image(new ByteArrayInputStream(post.getPostimage())));
@@ -52,14 +52,9 @@ public class PostItemController {
         return root;
     }
 
-    public void Repost(MouseEvent actionEvent) {
-        post.setDate(java.time.LocalDate.now());
-        post.setTime(java.time.LocalTime.now());
-        if(API.repost(SignUpPageController.profile,post)){
-            reposted_label.setVisible(true);
-        }else {
-            reposted_label.setVisible(false);
-        }
+    public synchronized void Repost(MouseEvent actionEvent) {
+        API.repost(ClientEXE.profile,post);
+        PageLoader.showalert("SBU GRAM","You reposted this post.",null);
     }
 
     public void AddComment(MouseEvent actionEvent) {
@@ -71,21 +66,23 @@ public class PostItemController {
     }
 
     public synchronized void Like(MouseEvent actionEvent) {
-        if(liked_label.isVisible()){
-            if (API.likepost(SignUpPageController.profile, post, false)) {
+        Post lastpost=post;
+        if(ClientEXE.profile.likepost.contains(post)){
+            Boolean islike=API.likepost(ClientEXE.profile, post, false);
+            if (!islike) {
+                ClientEXE.profile.likepost.remove(post);
                 post.setLikesnum(post.getLikesnum() - 1);
                 likesNum_label.setText(String.valueOf(post.getLikesnum()));
-                liked_label.setVisible(false);
-                disliked_label.setVisible(true);
             }
         }else {
-            if (API.likepost(SignUpPageController.profile, post, true)) {
+            Boolean islike=API.likepost(ClientEXE.profile, post, true);
+            if (islike) {
+                ClientEXE.profile.likepost.add(post);
                 post.setLikesnum(post.getLikesnum() + 1);
                 likesNum_label.setText(String.valueOf(post.getLikesnum()));
-                disliked_label.setVisible(false);
-                liked_label.setVisible(true);
             }
         }
+        API.updatepost(ClientEXE.profile,lastpost,post);
     }
 
 }

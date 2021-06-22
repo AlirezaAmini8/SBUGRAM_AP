@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.API;
+import Model.ClientEXE;
+import Model.ClientNetworker;
 import Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -30,6 +32,8 @@ public class MenuPageController {
 
     public void Logout(ActionEvent actionEvent) throws IOException {
         if(API.logout()) {
+            ClientNetworker.disconnectFromServer();
+            ClientEXE.profile = null;
             new PageLoader().load("Login");
         }
     }

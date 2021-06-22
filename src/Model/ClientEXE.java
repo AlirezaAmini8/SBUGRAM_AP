@@ -5,11 +5,6 @@ import javafx.stage.*;
 import javafx.application.*;
 import java.util.*;
 
-/**
- it is mail application of clientside
- it extends application because it is a javafx program
- it has exe in name because the executable class that user should run
- **/
 public class ClientEXE extends Application {
 
     public static Profile getProfile() {

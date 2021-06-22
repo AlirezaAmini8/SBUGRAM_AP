@@ -1,6 +1,9 @@
 package Common;
 
+import Model.Post;
+
 import java.io.Serializable;
+import java.util.Vector;
 
 public class Profile implements Serializable {
 
@@ -12,6 +15,11 @@ public class Profile implements Serializable {
     private String location;
     private String favoriteColor;
     private byte[] profilePhoto;
+    public Integer followersnum=0;
+    public Integer followingsnum=0;
+    public Vector<Profile> followers=new Vector<>();
+    public Vector<Profile> folowings=new Vector<>();
+    public Vector<Post> likepost=new Vector<>();
 
     public Profile(String username){
         this.username = username;
@@ -101,3 +109,4 @@ public class Profile implements Serializable {
 
 
 }
+

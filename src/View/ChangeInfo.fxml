@@ -35,47 +35,47 @@
       </TextField>
       <ImageView fx:id="changenamemark" fitHeight="33.0" fitWidth="33.0" layoutX="379.0" layoutY="228.0" visible="false">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_checkmark_48px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_ok_96px.png" />
          </image>
       </ImageView>
       <ImageView fx:id="changelastnamemark" fitHeight="33.0" fitWidth="33.0" layoutX="379.0" layoutY="290.0" visible="false">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_checkmark_48px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_ok_96px.png" />
          </image>
       </ImageView>
       <ImageView fx:id="changelocationmark" fitHeight="33.0" fitWidth="33.0" layoutX="378.0" layoutY="359.0" visible="false">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_checkmark_48px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_ok_96px.png" />
          </image>
       </ImageView>
       <ImageView fx:id="changebirthdatemark" fitHeight="33.0" fitWidth="33.0" layoutX="377.0" layoutY="434.0" visible="false">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_checkmark_48px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_ok_96px.png" />
          </image>
       </ImageView>
       <ImageView fx:id="backbutton" fitHeight="33.0" fitWidth="33.0" layoutX="25.0" layoutY="24.0" onMouseClicked="#goBack">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_back_arrow_64px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_back_to_96px.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ChangeName_button" fitHeight="48.0" fitWidth="64.0" layoutX="313.0" layoutY="220.0" onMouseClicked="#ChangeName">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_change_64px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_change_96px.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ChangeLastName_button" fitHeight="48.0" fitWidth="64.0" layoutX="313.0" layoutY="282.0" onMouseClicked="#ChangeLastName">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_change_64px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_change_96px.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ChangeBirthDate_button" fitHeight="48.0" fitWidth="64.0" layoutX="313.0" layoutY="426.0" onMouseClicked="#ChangeBirthDate">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_change_64px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_change_96px.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ChangeLocation_button" fitHeight="48.0" fitWidth="64.0" layoutX="313.0" layoutY="352.0" onMouseClicked="#ChangeLocation">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_change_64px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_change_96px.png" />
          </image>
       </ImageView>
    </children>

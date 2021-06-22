@@ -1,10 +1,11 @@
 package Server;
 
 import Common.*;
+import Model.ClientEXE;
 import Model.Post;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.UnaryOperator;
 
 
 public class API {
@@ -54,8 +55,10 @@ public class API {
         return ans;
     }
     public static Map<String,Object> forgotpassword(Map<String ,Object> income){
-        Profile profile = (Profile) income.get("profile");
+        String username = (String) income.get("username");
+        Profile profile=ServerEXE.profiles.get(username);
         String favoritecolor= profile.getFavoriteColor();
+
         Map<String,Object> ans=new HashMap<>();
         ans.put("command",Command.FORGOT_PASSWORD);
         ans.put("answer",favoritecolor);
@@ -63,11 +66,20 @@ public class API {
         System.out.println("time :"+Time.getTime());
         return ans;
     }
+    public static Map<String,Object> getpassword(Map<String ,Object> income) {
+        String username= (String) income.get("username");
+        Profile profile= ServerEXE.profiles.get(username);
+        Map<String,Object> ans=new HashMap<>();
+        ans.put("command",Command.GET_PASSWORD);
+        ans.put("answer",profile.getPassword());
+        return ans;
+    }
     public static Map<String,Object> setpassword(Map<String ,Object> income) {
-        Profile profile= (Profile) income.get("profile");
+        String username= (String) income.get("username");
+        Profile profile= ServerEXE.profiles.get(username);
         String newpassword= (String) income.get("newpassword");
         profile.setPassword(newpassword);
-        ServerEXE.profiles.replace(profile.getUserName(),profile);
+        ServerEXE.profiles.replace(username,profile);
         Map<String,Object> ans=new HashMap<>();
         ans.put("command",Command.SET_PASSWORD);
         ans.put("answer",new Boolean(true));
@@ -76,13 +88,13 @@ public class API {
         return ans;
     }
     public static Map<String,Object> addpost(Map<String ,Object> income) {
-        Profile profile= (Profile) income.get("profile");
         Post newpost= (Post) income.get("post");
         ServerEXE.posts.add(newpost);
+        DBManager.getInstance().updateDataBase();
         Map<String,Object> ans=new HashMap<>();
         ans.put("command",Command.ADD_POST);
         ans.put("answer",new Boolean(true));
-        System.out.println(profile.getUserName()+" added post");
+        System.out.println(newpost.getUsername()+" added post");
         System.out.println("time :"+Time.getTime() );
         return ans;
     }
@@ -104,11 +116,19 @@ public class API {
     }
     public static Map<String,Object> repost(Map<String ,Object> income) {
         Profile profile= (Profile) income.get("profile");
-        Post repost= (Post) income.get("repost");
+        Post post= (Post) income.get("repost");
+        post.setLikesnum(0);
+        post.setRepostsnum(0);
+        post.setUsername(profile.getUserName());
+        post.setDate(java.time.LocalDate.now());
+        post.setTime(java.time.LocalTime.now());
+        ServerEXE.posts.add(post);
+        DBManager.getInstance().updateDataBase();
+
         Map<String,Object> ans=new HashMap<>();
         ans.put("command",Command.REPOST);
         ans.put("answer", new Boolean(true));
-        System.out.println("reposted :"+repost.getTitle());
+        System.out.println(profile.getUserName() +"reposted :"+post.getTitle());
         System.out.println("time :"+Time.getTime() );
         return ans;
     }
@@ -116,7 +136,7 @@ public class API {
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.LOGOUT);
         ans.put("answer",new Boolean(true));
-        System.out.println("logged out.");
+        System.out.println("logged out and disconnected from server.");
         System.out.println("time :"+Time.getTime());
         return ans;
     }
@@ -130,16 +150,16 @@ public class API {
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.UPDATE_INFO);
         ans.put("answer",new Boolean(true));
-        System.out.println("info updated.");
+        System.out.println(newProfile.getUserName()+" has updated info.");
         System.out.println("time :"+Time.getTime());
         return ans;
     }
     public static Map<String,Object> deleteaccount (Map<String,Object> income){
         Profile newProfile = (Profile) income.get("profile");
         String username = newProfile.getUserName();
-        for(Post post:ServerEXE.posts){
-            if(post.getUsername().equals(username)){
-                ServerEXE.posts.remove(post);
+        for(int i=ServerEXE.posts.size()-1;i>=0;i--){
+            if(ServerEXE.posts.get(i).getUsername().equals(username)){
+                ServerEXE.posts.remove(ServerEXE.posts.get(i));
             }
         }
         ServerEXE.profiles.remove(username,newProfile);
@@ -151,4 +171,41 @@ public class API {
         System.out.println("time :"+Time.getTime());
         return ans;
     }
+    public static Map<String,Object> timeLine (Map<String,Object> income) {
+        Collections.sort(ServerEXE.posts);
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.TIME_LINE);
+        ans.put("answer",new ArrayList<>(ServerEXE.posts));
+        return ans;
+    }
+    public static Map<String,Object> getmyposts(Map<String,Object> income){
+        Profile profile= (Profile) income.get("profile");
+        Vector<Post> mypostslist=new Vector<>();
+        for(Post post: ServerEXE.posts){
+            if(post.getUsername().equals(profile.getUserName())){
+                mypostslist.add(post);
+            }
+        }
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.MY_POSTS);
+        ans.put("answer",new ArrayList<>(mypostslist));
+        return ans;
+    }
+    public static Map<String,Object> updatepost(Map<String,Object> income){
+        Profile profile= (Profile) income.get("profile");
+        Post lastPost=(Post) income.get("lastpost");
+        Post newPost=(Post) income.get("newpost");
+        ServerEXE.posts.remove(lastPost);
+        ServerEXE.posts.add(newPost);
+        ServerEXE.profiles.replace(profile.getUserName(),profile);
+        DBManager.getInstance().updateDataBase();
+
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.UPDATE_POST);
+        ans.put("answer",new Boolean(true));
+        System.out.println(newPost.getTitle()+" has Updated.");
+        System.out.println("time :"+Time.getTime());
+
+        return ans;
+     }
 }

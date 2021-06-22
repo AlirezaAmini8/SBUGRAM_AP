@@ -1,8 +1,6 @@
 package Controller;
 
-import Model.API;
-import Model.PageLoader;
-import Model.Post;
+import Model.*;
 import Server.ServerEXE;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -29,25 +27,18 @@ public class ProfilePageController {
     public Button deleteaccount_button;
     public ImageView ManuPage_button;
     public ListView<Post> listView;
-    public static Integer followersnum;
-    public static Integer followingsnum;
+
     public void initialize() {
-        profile_image.setImage(new Image(new ByteArrayInputStream(SignUpPageController.profile.getProfilePhoto())));
-        name_label.setText(SignUpPageController.profile.getName()+" "+SignUpPageController.profile.getLastName());
-        username_label.setText(SignUpPageController.profile.getUserName());
-        location_label.setText(SignUpPageController.profile.getLocation());
-        birthdate_label.setText(String.valueOf(SignUpPageController.profile.getBirthDate()));
-        List<Post> mypostslist=new ArrayList<>();
-        for(Post post: ServerEXE.posts){
-            if(post.getUsername().equals(SignUpPageController.profile.getUserName())){
-                mypostslist.add(post);
-            }
-        }
-        /*followersnum_label.setText(followersnum.toString());
-        followingsnum_label.setText(followingsnum.toString());*/
+        profile_image.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
+        name_label.setText(ClientEXE.profile.getName()+" "+ClientEXE.profile.getLastName());
+        username_label.setText(ClientEXE.profile.getUserName());
+        location_label.setText(ClientEXE.profile.getLocation());
+        birthdate_label.setText(String.valueOf(ClientEXE.profile.getBirthDate()));
+        followersnum_label.setText(ClientEXE.profile.followersnum.toString());
+        followingsnum_label.setText(ClientEXE.profile.followingsnum.toString());
 
         //show the post array in list view
-        listView.setItems(FXCollections.observableArrayList(mypostslist));
+        listView.setItems(FXCollections.observableArrayList(API.getmyposts(ClientEXE.getProfile())));
 
         //customize each cell of postList with new graphic object PostItem
         listView.setCellFactory(postList -> new PostItem());
@@ -58,9 +49,10 @@ public class ProfilePageController {
     }
 
     public void deleteaccount(ActionEvent actionEvent) throws IOException {
-        if(API.deleteaccount(SignUpPageController.profile)) {
-            new PageLoader().load("Login");
-        }
+        API.deleteaccount(ClientEXE.profile);
+        ClientNetworker.disconnectFromServer();
+        ClientEXE.profile = null;
+        new PageLoader().load("Login");
     }
 
     public void MenuPage(MouseEvent actionEvent) throws IOException {

@@ -48,18 +48,39 @@ public class ClientHandler implements Runnable {
                         break;
                     case FORGOT_PASSWORD:
                         answer=API.forgotpassword(income);
+                        break;
                     case SET_PASSWORD:
                         answer=API.setpassword(income);
+                        break;
                     case ADD_POST:
                         answer=API.addpost(income);
+                        break;
                     case LIKE_POST:
                         answer=API.likepost(income);
+                        break;
                     case REPOST:
                         answer=API.repost(income);
+                        break;
                     case UPDATE_INFO:
                         answer=API.updateinfo(income);
+                        break;
                     case LOGOUT:
                         answer = API.logout(income);
+                        break;
+                    case TIME_LINE:
+                        answer=API.timeLine(income);
+                        break;
+                    case GET_PASSWORD:
+                        answer=API.getpassword(income);
+                        break;
+                    case MY_POSTS:
+                        answer=API.getmyposts(income);
+                        break;
+                    case DELETE_ACCOUNT:
+                        answer=API.deleteaccount(income);
+                        break;
+                    case UPDATE_POST:
+                        answer=API.updatepost(income);
                         break;
 
                 }
@@ -76,7 +97,6 @@ public class ClientHandler implements Runnable {
             }
 
         }
-        // after loggin out!
         try{
             socketIn.close();
             socketOut.close();

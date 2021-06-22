@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -31,15 +30,9 @@
             <Font name="Book Antiqua Bold" size="12.0" />
          </font>
       </Button>
-      <Label fx:id="successful_label" layoutX="197.0" layoutY="529.0" text="successful !" textFill="LIME" visible="false">
-         <font>
-            <Font name="Book Antiqua Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="Repetitious" layoutX="192.0" layoutY="521.0" text="it is Repetitious!" textFill="RED" visible="false" />
       <ImageView fx:id="goback_button" fitHeight="40.0" fitWidth="38.0" layoutX="33.0" layoutY="21.0" onMouseClicked="#goback">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_cancel_48px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_back_to_96px.png" />
          </image>
       </ImageView>
    </children>

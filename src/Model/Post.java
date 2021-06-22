@@ -1,27 +1,30 @@
 package Model;
 
+import Common.Time;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class Post {
-
-
-
-    private  Integer likesnum;
-
-
-
-    private Integer repostsnum;
-
-
-
+public class Post implements Comparable,Serializable {
+    private  Integer likesnum=0;
+    private Integer repostsnum=0;
     private String username;
     private String title;
     private String description;
     private byte[] postimage;
     private LocalDate date;
     private LocalTime time;
+    private String writer;
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -103,5 +106,12 @@ public class Post {
     @Override
     public String toString() {
         return title;
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        Post post= (Post) o;
+        return this.getTime().compareTo(post.getTime());
     }
 }

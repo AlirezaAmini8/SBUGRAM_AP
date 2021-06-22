@@ -15,15 +15,13 @@ import java.io.*;
 import java.nio.file.Paths;
 
 public class AddPostController {
-    public static byte[] image;
+    public byte[] image;
     public ImageView goback_button;
     public TextField title_field;
     public TextField description_field;
     public ImageView post_image;
     public Button Addpost_image;
     public Button publish_button;
-    public Label successful_label;
-    public Label Repetitious;
     Profile profile=ClientEXE.getProfile();
     Post currentpost=new Post();
 
@@ -41,34 +39,24 @@ public class AddPostController {
     }
 
     public void Publish(ActionEvent actionEvent) {
-        for (int i = 0; i < ClientEXE.allpostsList.size(); i++) {
-            if (currentpost.equals(ClientEXE.allpostsList.get(i))) {
-                successful_label.setVisible(false);
-                Repetitious.setVisible(true);
-            }
-        }
-        if (!Repetitious.isVisible()) {
-            currentpost.setUsername(profile.getUserName());
-            currentpost.setDescription(description_field.getText());
-            currentpost.setPostimage(image);
-            currentpost.setDate(java.time.LocalDate.now());
-            currentpost.setTime(java.time.LocalTime.now());
-            currentpost.setTitle(title_field.getText());
-            if(API.addpost(SignUpPageController.profile,currentpost)){
-                successful_label.setVisible(true);
-            }else{
-                successful_label.setVisible(false);
-            }
-            currentpost = new Post();
+        currentpost.setUsername(profile.getUserName());
+        currentpost.setDescription(description_field.getText());
+        currentpost.setPostimage(image);
+        currentpost.setDate(java.time.LocalDate.now());
+        currentpost.setTime(java.time.LocalTime.now());
+        currentpost.setTitle(title_field.getText());
+        currentpost.setWriter(profile.getUserName());
+        API.addpost(currentpost);
+        PageLoader.showalert("SBU GRAM", "post added successfully.",null);
+        currentpost = new Post();
 
-            //empty fields
-            currentpost.setTitle("");
-            currentpost.setUsername("");
-            currentpost.setDate(null);
-            currentpost.setTime(null);
-            currentpost.setDescription("");
-            currentpost.setPostimage(null);
-        }
-        Repetitious.setVisible(false);
+        //empty fields
+        currentpost.setTitle("");
+        currentpost.setUsername("");
+        currentpost.setDate(null);
+        currentpost.setTime(null);
+        currentpost.setDescription("");
+        currentpost.setPostimage(null);
+        currentpost.setWriter("");
     }
 }

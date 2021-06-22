@@ -2,6 +2,7 @@ package Model;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -53,5 +54,12 @@ public class PageLoader {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientEXE.class.getResource("/View/" + fxml + ".fxml"));
         fxmlLoader.setController(controller);
         fxmlLoader.load();
+    }
+    public static void showalert( String title,String headertext ,String contentText){
+        Alert alert = new Alert( Alert.AlertType.INFORMATION );
+        alert.setTitle( title );
+        alert.setHeaderText( headertext );
+        alert.setContentText( contentText );
+        alert.showAndWait();
     }
 }

@@ -2,6 +2,8 @@ package Controller;
 
 import Common.Profile;
 import Model.API;
+import Model.ClientEXE;
+import Model.ClientNetworker;
 import Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +20,8 @@ import java.nio.file.Paths;
 public class SignUpPageController {
     public Label failedusername_label;
     public Label unsuccessful_label;
-    public static Profile profile;
+    public Profile profile;
+    public byte[] photo;
     @FXML
     public Button Loginbutton;
     public Button sign_up_button;
@@ -40,31 +43,36 @@ public class SignUpPageController {
     }
 
     public void SignUp(ActionEvent actionEvent) {
-        if(API.isUserNameExists(username_field.getText())) {
-            failedusername_label.setVisible(false);
-            profile = new Profile(username_field.getText());
-            profile.setFavoriteColor(Color_field.getText());
-            profile.setLocation(Location.getText());
-            profile.setBirthDate(BirthDate.getText());
-            profile.setName(Name.getText());
-            profile.setLastName(LastName.getText());
-            if (isValid(password_field.getText())) {
-                invalid_label.setVisible(false);
-
+        if (!ClientNetworker.isConnected()){
+            PageLoader.showalert("SBU GRAM","Not connected to server","you are not connected to server yet, please use connection panel!");
+            return;
+        }
+        if (isValid(password_field.getText())) {
+            invalid_label.setVisible(false);
+            if (!API.isUserNameExists(username_field.getText())) {
+                failedusername_label.setVisible(false);
+                profile = new Profile(username_field.getText());
+                profile.setFavoriteColor(Color_field.getText());
+                profile.setLocation(Location.getText());
+                profile.setBirthDate(BirthDate.getText());
+                profile.setName(Name.getText());
+                profile.setLastName(LastName.getText());
+                profile.setProfilePhoto(photo);
                 profile.setPassword(password_field.getText());
+                if (API.signUp(profile)) {
+                    ClientEXE.setProfile(profile);
+                    unsuccessful_label.setVisible(false);
+                    successful_label.setVisible(true);
+                } else {
+                    successful_label.setVisible(false);
+                    unsuccessful_label.setVisible(true);
+                }
             } else {
-                successful_label.setVisible(false);
-                invalid_label.setVisible(true);
-            }
-            if(API.signUp(profile)){
-                unsuccessful_label.setVisible(false);
-                successful_label.setVisible(true);
-            }else{
-                successful_label.setVisible(false);
-                unsuccessful_label.setVisible(true);
+                failedusername_label.setVisible(true);
             }
         }else{
-            failedusername_label.setVisible(true);
+            successful_label.setVisible(false);
+            invalid_label.setVisible(true);
         }
     }
 
@@ -75,7 +83,7 @@ public class SignUpPageController {
         profile_image.setImage(new Image(Paths.get(String.valueOf(selectedFile)).toUri().toString()));
         InputStream input = new FileInputStream(selectedFile);
         DataInputStream dataInputStream=new DataInputStream(input);
-        profile.setProfilePhoto(dataInputStream.readAllBytes());
+        photo=dataInputStream.readAllBytes();
     }
 
     public boolean isValid(String password)

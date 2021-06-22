@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.API;
+import Model.ClientEXE;
 import Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -15,34 +16,49 @@ public class ForgotPasswordController {
     public TextField favoriteColor_field;
     public TextField newPassword_field;
     public Label invalidPassword_label;
-    public Label wrongColor_label;
     public Button Login_button;
     public Button newpassword_button;
     public Label successful_label;
+    public TextField username_field;
 
     public void Login(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("Login");
     }
 
     public void ShowPassword(ActionEvent actionEvent) {
-        if(API.forgotpassword(SignUpPageController.profile,favoriteColor_field.getText())){
-            wrongColor_label.setVisible(false);
-            Alert alert=new Alert(Alert.AlertType.INFORMATION,SignUpPageController.profile.getFavoriteColor());
-            alert.showAndWait();
-        }else{
-            wrongColor_label.setVisible(true);
+        if(username_field.getText().equals("")){
+            PageLoader.showalert("SBU GRAM","Enter your username.",null);
+        }else {
+            if(API.isUserNameExists(username_field.getText())) {
+                if (API.forgotpassword(username_field.getText()).equals(favoriteColor_field.getText())) {
+                    PageLoader.showalert("SBU GRAM", "your password is :", API.getpassword(username_field.getText()));
+                } else {
+                    PageLoader.showalert("SBU GRAM","Wrong color.",null);
+                }
+            }else {
+                PageLoader.showalert("SBU GRAM","username doesn't exist.",null);
+            }
         }
     }
 
     public void setPassword(ActionEvent actionEvent) {
-        if(isValid(newPassword_field.getText())){
-            if(API.setpassword(SignUpPageController.profile,newPassword_field.getText())) {
-                invalidPassword_label.setVisible(false);
-                successful_label.setVisible(true);
+        if(username_field.getText().equals("")){
+            PageLoader.showalert("SBU GRAM","Enter your username.",null);
+        }else {
+            if(API.isUserNameExists(username_field.getText())) {
+                if (isValid(newPassword_field.getText())) {
+                    if (API.setpassword(username_field.getText(), newPassword_field.getText())) {
+                        ClientEXE.getProfile().setPassword(newPassword_field.getText());
+                        invalidPassword_label.setVisible(false);
+                        successful_label.setVisible(true);
+                    }
+                } else {
+                    successful_label.setVisible(false);
+                    invalidPassword_label.setVisible(true);
+                }
+            }else{
+                PageLoader.showalert("SBU GRAM","username doesn't exist.",null);
             }
-        }else{
-            successful_label.setVisible(false);
-            invalidPassword_label.setVisible(true);
         }
     }
     public boolean isValid(String password)

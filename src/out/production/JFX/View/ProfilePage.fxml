@@ -16,22 +16,22 @@
             <AnchorPane layoutX="-1.0" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);">
                <children>
                   <ImageView fx:id="profile_image" fitHeight="134.0" fitWidth="153.0" layoutX="25.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="name_label" layoutX="207.0" layoutY="61.0" prefHeight="17.0" prefWidth="195.0" textFill="#00f5ff">
+                  <Label fx:id="name_label" layoutX="257.0" layoutY="64.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="username_label" layoutX="207.0" layoutY="92.0" prefHeight="17.0" prefWidth="195.0" textFill="#00f5ff">
+                  <Label fx:id="username_label" layoutX="257.0" layoutY="96.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="location_label" layoutX="207.0" layoutY="124.0" prefHeight="17.0" prefWidth="195.0" textFill="#00f5ff">
+                  <Label fx:id="location_label" layoutX="257.0" layoutY="124.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="birthdate_label" layoutX="207.0" layoutY="158.0" prefHeight="17.0" prefWidth="195.0" textFill="#00f5ff">
+                  <Label fx:id="birthdate_label" layoutX="257.0" layoutY="161.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -47,6 +47,10 @@
                         <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_menu_40px.png" />
                      </image>
                   </ImageView>
+                  <Label layoutX="198.0" layoutY="96.0" prefWidth="55.0" text="username:" textFill="#f7ff00" />
+                  <Label layoutX="199.0" layoutY="161.0" text="birthdate:" textFill="#f7ff00" />
+                  <Label layoutX="208.0" layoutY="64.0" text="Name:" textFill="#f7ff00" />
+                  <Label layoutX="201.0" layoutY="124.0" text="Location:" textFill="#f7ff00" />
                </children>
             </AnchorPane>
          </children></AnchorPane>

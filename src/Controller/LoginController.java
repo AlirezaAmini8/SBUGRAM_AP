@@ -1,10 +1,15 @@
 package Controller;
 
+import Common.Profile;
 import Model.API;
+import Model.ClientEXE;
+import Model.ClientNetworker;
 import Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -18,8 +23,14 @@ public class LoginController {
     public Button sign_up_button;
     public Button forgot_password;
     public Label forgotpass_label;
+    public ImageView serverconnect_image;
+    public Label server_Label;
 
     public void login(ActionEvent actionEvent) throws IOException {
+        if (!ClientNetworker.isConnected()){
+            PageLoader.showalert("SBU GRAM","Not connected to server","you are not connected to server yet, please use connection panel!");
+            return;
+        }
         String username= username_field.getText();
         String password;
         if(password_field.isVisible()) {
@@ -27,13 +38,14 @@ public class LoginController {
         }else{
             password=password_visible.getText();
         }
-        if(API.login(username,password)==true){
-            incorrect_label.setVisible(false);
-            new PageLoader().load("TimeLine");
-
-        }else{
+        Profile profile = API.login(username,password);
+        if(profile == null){
             incorrect_label.setVisible(true);
+            return;
         }
+        ClientEXE.setProfile(profile);
+        incorrect_label.setVisible(false);
+        new PageLoader().load("TimeLine");
     }
 
     public void show_password(ActionEvent actionEvent) {
@@ -54,5 +66,10 @@ public class LoginController {
 
     public void forgotPassword(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("ForgotPassword");
+    }
+
+    public void connecttoserver(MouseEvent mouseEvent) {
+        ClientNetworker.connectToServer();
+        PageLoader.showalert("SBU GRAM","Connected successfully :)",null);
     }
 }

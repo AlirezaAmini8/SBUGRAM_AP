@@ -41,6 +41,7 @@ public class ClientNetworker {
 
 
     public static Boolean disconnectFromServer(){
+        System.out.println("disconnected from server :(");
         try{
             socketIn.close();
             socketOut.close();

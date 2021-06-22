@@ -35,7 +35,7 @@
       </Button>
       <ImageView fx:id="goBack_button" fitHeight="40.0" fitWidth="38.0" layoutX="29.0" layoutY="22.0" onMouseClicked="#goBack">
          <image>
-            <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_cancel_48px.png" />
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_back_to_96px.png" />
          </image>
       </ImageView>
    </children>

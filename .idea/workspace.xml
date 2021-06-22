@@ -2,86 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Common/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Common/Profile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Common/Time.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/AddPostController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/API.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ClientEXE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ClientNetworker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/PageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JFX.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Controller/AddPostController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Controller/ForgotPasswordController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Controller/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Controller/PostItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Controller/PostItemController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Controller/SignUpPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Controller/TimeLineController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Model/API.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Model/ClientEXE.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Model/ClientNetworker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Model/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Model/PageLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/Model/Post.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/View/AddPost.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/View/ForgotPassword.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/View/Login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/View/PostItem.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/View/SignUpPage.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Client/View/TimeLine.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Common/Command.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Common/Profile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Common/Time.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Server/API.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Server/ClientHandler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Server/ClientHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Server/DBManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBU/Server/ServerEXE.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFX/SBUGRAm.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/AddPostController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/ChangeInfoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/ForgotPasswordController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/MenuPageController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/PostItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/PostItemController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/ProfilePageController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/SignUpPageController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Controller/TimeLineController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Model/API.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Model/ClientEXE.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Model/ClientNetworker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Model/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Model/PageLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/Model/Post.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/AddPost.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/ChangeInfo.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/ForgotPassword.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/Login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/MenuPage.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/PostItem.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/ProfilePage.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/SignUpPage.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Client/View/TimeLine.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Common/Command.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Common/Profile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Common/Time.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Server/API.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Server/ClientHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Server/DBManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SBU/Server/ServerEXE.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AddPostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AddPostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ChangeInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChangeInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ForgotPasswordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PostItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProfilePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfilePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SignUpPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SignUpPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ClientEXE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ClientEXE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Controller/AddPostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Controller/AddPostController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Controller/ChangeInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Controller/ChangeInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Controller/ForgotPasswordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Controller/ForgotPasswordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Controller/PostItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Controller/PostItemController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Controller/ProfilePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Controller/ProfilePageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Controller/SignUpPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Controller/SignUpPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Model/API.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Model/API.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Model/ClientEXE.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Model/ClientEXE.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/JFX/Server/DBManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/JFX/Server/DBManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

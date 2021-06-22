@@ -1,9 +1,7 @@
 package Server;
 
-import Common.Profile;
-import Model.Post;
-
 import java.io.*;
+import java.util.Vector;
 import java.util.concurrent.*;
 
 public class DBManager {
@@ -23,35 +21,9 @@ public class DBManager {
     private DBManager() {/* do nothing! */ }
 
     @SuppressWarnings("unchecked")
-    public synchronized void initializeServer(){
-//        try {
-//            FileInputStream fin=new FileInputStream(DBManager.PROFILES_FILE);
-//            ObjectInputStream inFromFile=new ObjectInputStream(fin);
-            ServerEXE.profiles = new ConcurrentHashMap<>();
-//        ServerEXE.profiles = new ConcurrentHashMap<>( (ConcurrentHashMap<String, Profile>) inFromFile.readObject());
-
-//            inFromFile.close();
-//            fin.close();
-//        }
-//        catch(EOFException | StreamCorruptedException e){
-//            ServerEXE.profiles = new ConcurrentHashMap<>();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-
-//        try {
-//            FileInputStream fin = new FileInputStream(DBManager.POST_FILE);
-//            ObjectInputStream inFromFile = new ObjectInputStream(fin);
-//            ServerEXE.posts = new ConcurrentSkipListSet<>( (ConcurrentSkipListSet<Post>) inFromFile.readObject());
-            ServerEXE.posts = new ConcurrentSkipListSet<>();
-//            inFromFile.close();
-//            fin.close();
-//        }
-//        catch(EOFException | StreamCorruptedException e){
-//            ServerEXE.posts = new ConcurrentSkipListSet<>();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
+    public synchronized void initializeServer() {
+        ServerEXE.profiles = new ConcurrentHashMap<>();
+        ServerEXE.posts = new Vector<>();
     }
 
     public synchronized void updateDataBase(){
@@ -64,7 +36,7 @@ public class DBManager {
 
             fout = new FileOutputStream(POST_FILE);
             objToFile = new ObjectOutputStream(fout);
-            objToFile.writeObject(ServerEXE.posts); // writing mails
+            objToFile.writeObject(ServerEXE.posts); // writing posts
             objToFile.close();
             fout.close();
 
