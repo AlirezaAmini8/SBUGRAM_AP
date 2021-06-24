@@ -82,7 +82,12 @@ public class ClientHandler implements Runnable {
                     case UPDATE_POST:
                         answer=API.updatepost(income);
                         break;
-
+                    case VIEW_COMMENTS:
+                        answer=API.viewcomments(income);
+                        break;
+                    case ADD_COMMENT:
+                        answer=API.addcomment(income);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

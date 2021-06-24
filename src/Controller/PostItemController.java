@@ -21,7 +21,6 @@ public class PostItemController {
     public TextField Description_field;
     public ImageView PostImage;
     public Label postTime;
-    public Label postDate;
     public ImageView Repost_button;
     public ImageView AddComment_button;
     public ImageView ViewCmnt_button;
@@ -43,8 +42,7 @@ public class PostItemController {
         username_label.setText(post.getUsername());
         title_field.setText(post.getTitle());
         profileImage.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
-        postTime.setText(post.getTime().toString());
-        postDate.setText(post.getDate().toString());
+        postTime.setText(post.getTime());
         PostImage.setImage(new Image(new ByteArrayInputStream(post.getPostimage())));
         Description_field.setText(post.getDescription());
         likesNum_label.setText(String.valueOf(post.getLikesnum()));
@@ -57,12 +55,14 @@ public class PostItemController {
         PageLoader.showalert("SBU GRAM","You reposted this post.",null);
     }
 
-    public void AddComment(MouseEvent actionEvent) {
-        //
+    public void AddComment(MouseEvent actionEvent) throws IOException {
+        ClientEXE.toCommentPost=post;
+        new PageLoader().load("AddComment");
     }
 
-    public void ViewCmnt(MouseEvent actionEvent) {
-        //
+    public void ViewCmnt(MouseEvent actionEvent) throws IOException {
+        ClientEXE.toCommentPost=post;
+        new PageLoader().load("ViewComments");
     }
 
     public synchronized void Like(MouseEvent actionEvent) {

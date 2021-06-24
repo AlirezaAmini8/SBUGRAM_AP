@@ -118,4 +118,18 @@ public class API{
         toSend.put("newpost",newPost);
         ClientNetworker.serve(toSend);
     }
+    public static List<Message> viewcomments(Post post){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Command.VIEW_COMMENTS);
+        toSend.put("post",post);
+        Map<String,Object> recieved = ClientNetworker.serve(toSend);
+        return (List<Message>)  recieved.get("answer");
+    }
+    public static void addcomment(Post post, Message message){
+        Map<String,Object> toSend=new HashMap<>();
+        toSend.put("command", Command.ADD_COMMENT);
+        toSend.put("post",post);
+        toSend.put("comment",message);
+        ClientNetworker.serve(toSend);
+    }
 }

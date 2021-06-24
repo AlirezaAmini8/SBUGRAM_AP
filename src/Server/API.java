@@ -2,6 +2,7 @@ package Server;
 
 import Common.*;
 import Model.ClientEXE;
+import Model.Message;
 import Model.Post;
 
 import java.util.*;
@@ -120,8 +121,7 @@ public class API {
         post.setLikesnum(0);
         post.setRepostsnum(0);
         post.setUsername(profile.getUserName());
-        post.setDate(java.time.LocalDate.now());
-        post.setTime(java.time.LocalTime.now());
+        post.setTime(Time.getTime());
         ServerEXE.posts.add(post);
         DBManager.getInstance().updateDataBase();
 
@@ -208,4 +208,30 @@ public class API {
 
         return ans;
      }
+    public static Map<String,Object> viewcomments (Map<String,Object> income) {
+        Post post= (Post) income.get("post");
+        ServerEXE.posts.remove(post);
+        Collections.sort(post.comments);
+        ServerEXE.posts.add(post);
+        DBManager.getInstance().updateDataBase();
+
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.VIEW_COMMENTS);
+        ans.put("answer",new ArrayList<>(post.comments));
+        return ans;
+    }
+    public static Map<String,Object> addcomment(Map<String,Object> income) {
+        Post post= (Post) income.get("post");
+        Message message= (Message) income.get("comment");
+        ServerEXE.posts.remove(post);
+        post.comments.add(message);
+        ServerEXE.posts.add(post);
+        DBManager.getInstance().updateDataBase();
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.ADD_COMMENT);
+        ans.put("answer",new Boolean(true));
+        System.out.println(" added comment to:"+post.getTitle());
+        System.out.println("time :"+Time.getTime() );
+        return ans;
+    }
 }

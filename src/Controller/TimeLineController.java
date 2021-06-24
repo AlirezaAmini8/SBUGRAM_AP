@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.API;
+import Model.ClientEXE;
 import Model.PageLoader;
 import Model.Post;
 import Server.ServerEXE;
@@ -18,10 +19,11 @@ public class TimeLineController {
 
 
     public void initialize() {
+        ClientEXE.profile.setWasWhere("TimeLine");
         //show the post array in list view
         Listview.setItems(FXCollections.observableArrayList(API.timeLine()));
         //customize each cell of postList with new graphic object PostItem
-        Listview.setCellFactory(postList -> new PostItem());
+        Listview.setCellFactory( postList -> new PostItem());
     }
 
     public void Menu(MouseEvent actionEvent) throws IOException {

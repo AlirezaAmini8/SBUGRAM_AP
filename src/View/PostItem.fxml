@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="330.0" prefWidth="457.0" style="-fx-background-color: rgb(23,32,42);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" prefHeight="330.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="title_field" layoutX="9.0" layoutY="61.0" promptText="Title">
+      <TextField fx:id="title_field" disable="true" layoutX="9.0" layoutY="61.0" promptText="Title">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -21,17 +21,12 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="Description_field" layoutX="9.0" layoutY="103.0" prefHeight="71.0" prefWidth="188.0" promptText="Description">
+      <TextField fx:id="Description_field" disable="true" layoutX="9.0" layoutY="103.0" prefHeight="71.0" prefWidth="188.0" promptText="Description">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="postTime" layoutX="76.0" layoutY="187.0" prefHeight="25.0" prefWidth="124.0" textFill="#00f5ff">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="postDate" layoutX="281.0" layoutY="187.0" prefHeight="25.0" prefWidth="124.0" textFill="#00f5ff">
+      <Label fx:id="postTime" layoutX="76.0" layoutY="187.0" prefHeight="25.0" prefWidth="357.0" textFill="#00f5ff">
          <font>
             <Font size="13.0" />
          </font>
@@ -57,7 +52,6 @@
          </font>
       </Label>
       <Label layoutX="17.0" layoutY="191.0" text="ShareTime:" textFill="#e5f500" />
-      <Label layoutX="217.0" layoutY="191.0" text="ShareDate:" textFill="#e5f500" />
       <ImageView fx:id="Like_button" fitHeight="44.0" fitWidth="45.0" layoutX="366.0" layoutY="241.0" onMouseClicked="#Like">
          <image>
             <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_facebook_like_128px.png" />

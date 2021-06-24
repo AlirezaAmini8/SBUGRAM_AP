@@ -1,10 +1,10 @@
 package Controller;
 
 import Common.Profile;
+import Common.Time;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -42,8 +42,7 @@ public class AddPostController {
         currentpost.setUsername(profile.getUserName());
         currentpost.setDescription(description_field.getText());
         currentpost.setPostimage(image);
-        currentpost.setDate(java.time.LocalDate.now());
-        currentpost.setTime(java.time.LocalTime.now());
+        currentpost.setTime(Time.getTime());
         currentpost.setTitle(title_field.getText());
         currentpost.setWriter(profile.getUserName());
         API.addpost(currentpost);
@@ -53,10 +52,12 @@ public class AddPostController {
         //empty fields
         currentpost.setTitle("");
         currentpost.setUsername("");
-        currentpost.setDate(null);
         currentpost.setTime(null);
         currentpost.setDescription("");
         currentpost.setPostimage(null);
         currentpost.setWriter("");
+        description_field.setText("");
+        title_field.setText("");
+        post_image.setImage(null);
     }
 }

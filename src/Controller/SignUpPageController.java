@@ -33,7 +33,6 @@ public class SignUpPageController {
     public TextField LastName;
     public TextField Name;
     public TextField password_field;
-    public Label invalid_label;
     public TextField Color_field;
     public Button forgotpass_field;
     public Label successful_label;
@@ -48,7 +47,6 @@ public class SignUpPageController {
             return;
         }
         if (isValid(password_field.getText())) {
-            invalid_label.setVisible(false);
             if (!API.isUserNameExists(username_field.getText())) {
                 failedusername_label.setVisible(false);
                 profile = new Profile(username_field.getText());
@@ -71,8 +69,7 @@ public class SignUpPageController {
                 failedusername_label.setVisible(true);
             }
         }else{
-            successful_label.setVisible(false);
-            invalid_label.setVisible(true);
+            PageLoader.showalert("SBU GRAM","Invalid password","Password should be at least 8 characters and contains small,capital letters and numbers");
         }
     }
 

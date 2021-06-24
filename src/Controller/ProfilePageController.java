@@ -29,6 +29,7 @@ public class ProfilePageController {
     public ListView<Post> listView;
 
     public void initialize() {
+        ClientEXE.profile.setWasWhere("ProfilePage");
         profile_image.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
         name_label.setText(ClientEXE.profile.getName()+" "+ClientEXE.profile.getLastName());
         username_label.setText(ClientEXE.profile.getUserName());

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddCommentController">
+   <children>
+      <ImageView fx:id="goback_button" fitHeight="40.0" fitWidth="38.0" layoutX="30.0" layoutY="14.0" onMouseClicked="#goback">
+         <image>
+            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_back_to_96px.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="Description_field" layoutY="155.0" prefHeight="95.0" prefWidth="455.0" promptText="Enter Comment :">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="publish_button" layoutX="186.0" layoutY="269.0" mnemonicParsing="false" onAction="#Publish" style="-fx-background-color: rgb(84, 153, 199);" text="Add to comments" textFill="#040b83">
+         <font>
+            <Font name="Book Antiqua Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

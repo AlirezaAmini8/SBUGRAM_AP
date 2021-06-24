@@ -5,7 +5,9 @@ import Common.Time;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Vector;
 
 public class Post implements Comparable,Serializable {
     private  Integer likesnum=0;
@@ -14,9 +16,9 @@ public class Post implements Comparable,Serializable {
     private String title;
     private String description;
     private byte[] postimage;
-    private LocalDate date;
-    private LocalTime time;
+    private String time;
     private String writer;
+    public ArrayList<Message> comments=new ArrayList<>();
 
     public String getWriter() {
         return writer;
@@ -30,6 +32,12 @@ public class Post implements Comparable,Serializable {
         this.username = username;
     }
 
+    public String getTime() {
+        return time;
+    }
+    public void setTime(String time) {
+        this.time = time;
+    }
     public void setRepostsnum(Integer repostsnum) {
         this.repostsnum = repostsnum;
     }
@@ -54,21 +62,6 @@ public class Post implements Comparable,Serializable {
         this.postimage = postimage;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
 
     public String getTitle() {
         return title;

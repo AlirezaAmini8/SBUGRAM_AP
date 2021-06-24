@@ -10,8 +10,8 @@ public class ClientEXE extends Application {
     public static Profile getProfile() {
         return profile;
     }
-
     public static Profile profile;
+    public static Post toCommentPost;
     public static Map<String,Profile> profiles=new HashMap<>();
     public static List<Post> getAllpostsList() {
         return allpostsList;
@@ -35,7 +35,6 @@ public class ClientEXE extends Application {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void start(Stage primaryStage) throws Exception{
         PageLoader.initStage(primaryStage);
         ClientNetworker.connectToServer();

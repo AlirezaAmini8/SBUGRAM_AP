@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 
 public class DBManager {
 
-    public static final String FILE_PREFIX = "./db/";
+    public static final String FILE_PREFIX = "C:\\Users\\admin\\Desktop\\JFX\\src\\Server\\db";
     public static final String PROFILES_FILE = FILE_PREFIX + "ProfilesDB";
     public static final String POST_FILE =  FILE_PREFIX + "PostDB";
 

@@ -20,6 +20,18 @@ public class Profile implements Serializable {
     public Vector<Profile> followers=new Vector<>();
     public Vector<Profile> folowings=new Vector<>();
     public Vector<Post> likepost=new Vector<>();
+    public String wasWhere;
+
+    public String getWasWhere() {
+        return wasWhere;
+    }
+
+    public void setWasWhere(String wasWhere) {
+        this.wasWhere = wasWhere;
+    }
+
+
+
 
     public Profile(String username){
         this.username = username;
