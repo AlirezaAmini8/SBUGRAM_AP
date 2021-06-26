@@ -41,7 +41,9 @@ public class PostItemController {
         writer_label.setText(post.getWriter());
         username_label.setText(post.getUsername());
         title_field.setText(post.getTitle());
-        profileImage.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
+        if(post.getPostimage()!=null){
+            profileImage.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
+        }
         postTime.setText(post.getTime());
         PostImage.setImage(new Image(new ByteArrayInputStream(post.getPostimage())));
         Description_field.setText(post.getDescription());
@@ -51,7 +53,11 @@ public class PostItemController {
     }
 
     public synchronized void Repost(MouseEvent actionEvent) {
+        Post lastpost=post;
+        post.setRepostsnum(post.getRepostsnum().incrementAndGet());
+        repostsNum_label.setText(post.getRepostsnum().toString());
         API.repost(ClientEXE.profile,post);
+        API.updatepost(ClientEXE.profile,lastpost,post);
         PageLoader.showalert("SBU GRAM","You reposted this post.",null);
     }
 
@@ -67,18 +73,18 @@ public class PostItemController {
 
     public synchronized void Like(MouseEvent actionEvent) {
         Post lastpost=post;
-        if(ClientEXE.profile.likepost.contains(post)){
+        if(API.getpost(ClientEXE.profile,post)){
             Boolean islike=API.likepost(ClientEXE.profile, post, false);
             if (!islike) {
                 ClientEXE.profile.likepost.remove(post);
-                post.setLikesnum(post.getLikesnum() - 1);
+                post.setLikesnum(post.getLikesnum().decrementAndGet());
                 likesNum_label.setText(String.valueOf(post.getLikesnum()));
             }
         }else {
             Boolean islike=API.likepost(ClientEXE.profile, post, true);
             if (islike) {
                 ClientEXE.profile.likepost.add(post);
-                post.setLikesnum(post.getLikesnum() + 1);
+                post.setLikesnum(post.getLikesnum().incrementAndGet());
                 likesNum_label.setText(String.valueOf(post.getLikesnum()));
             }
         }

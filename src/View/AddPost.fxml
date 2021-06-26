@@ -1,39 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddPostController">
-   <children>
-      <TextField fx:id="title_field" layoutX="158.0" layoutY="81.0" prefHeight="29.0" prefWidth="149.0" promptText="title">
-         <font>
-            <Font name="Book Antiqua Bold Italic" size="14.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="description_field" layoutX="127.0" layoutY="281.0" prefHeight="128.0" prefWidth="208.0" promptText="description">
-         <font>
-            <Font name="Book Antiqua Bold Italic" size="14.0" />
-         </font>
-      </TextField>
-      <ImageView fx:id="post_image" fitHeight="150.0" fitWidth="208.0" layoutX="127.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="Addpost_image" layoutX="335.0" layoutY="185.0" mnemonicParsing="false" onAction="#Addpost_image" style="-fx-background-color: rgb(84, 153, 199);" text="Add post image" textFill="#040b83">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="publish_button" layoutX="199.0" layoutY="492.0" mnemonicParsing="false" onAction="#Publish" style="-fx-background-color: rgb(84, 153, 199);" text="publish" textFill="#040b83">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="goback_button" fitHeight="40.0" fitWidth="38.0" layoutX="33.0" layoutY="21.0" onMouseClicked="#goback">
-         <image>
-            <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_back_to_96px.png" />
-         </image>
-      </ImageView>
-   </children>
-</AnchorPane>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddPostController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);">
+         <children>
+            <AnchorPane layoutX="6.0" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);">
+               <children>
+                  <ImageView fx:id="goback_button" fitHeight="40.0" fitWidth="38.0" layoutX="31.0" layoutY="23.0" onMouseClicked="#goback">
+                     <image>
+                        <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_back_to_96px.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="Addpost_image" layoutX="335.0" layoutY="185.0" mnemonicParsing="false" onAction="#Addpost_image" prefHeight="24.0" prefWidth="106.0" style="-fx-background-color: rgb(84, 153, 199);" text="Add post image" textFill="#040b83">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="description_field" layoutX="133.0" layoutY="305.0" prefHeight="128.0" prefWidth="208.0" promptText="description">
+                     <font>
+                        <Font name="Book Antiqua Bold Italic" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="publish_button" layoutX="219.0" layoutY="504.0" mnemonicParsing="false" onAction="#Publish" style="-fx-background-color: rgb(84, 153, 199);" text="publish" textFill="#040b83">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="title_field" layoutX="162.0" layoutY="70.0" prefHeight="29.0" prefWidth="149.0" promptText="title">
+                     <font>
+                        <Font name="Book Antiqua Bold Italic" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fx:id="post_image" fitHeight="150.0" fitWidth="208.0" layoutX="133.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>

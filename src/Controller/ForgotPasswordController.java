@@ -49,12 +49,12 @@ public class ForgotPasswordController {
                 if (isValid(newPassword_field.getText())) {
                     if (API.setpassword(username_field.getText(), newPassword_field.getText())) {
                         ClientEXE.getProfile().setPassword(newPassword_field.getText());
-                        invalidPassword_label.setVisible(false);
                         successful_label.setVisible(true);
                     }
                 } else {
                     successful_label.setVisible(false);
-                    invalidPassword_label.setVisible(true);
+                    PageLoader.showalert("SBU GRAM","Invalid password","Password should be at least 8 characters and contains letters and numbers.It shouldn't have space between words.");
+
                 }
             }else{
                 PageLoader.showalert("SBU GRAM","username doesn't exist.",null);

@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.*;
-import Server.ServerEXE;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -12,8 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class ProfilePageController {
     public ImageView profile_image;
@@ -27,12 +25,15 @@ public class ProfilePageController {
     public Button deleteaccount_button;
     public ImageView ManuPage_button;
     public ListView<Post> listView;
+    public Label followers;
+    public Label followings;
 
     public void initialize() {
         ClientEXE.profile.setWasWhere("ProfilePage");
+
         profile_image.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
         name_label.setText(ClientEXE.profile.getName()+" "+ClientEXE.profile.getLastName());
-        username_label.setText(ClientEXE.profile.getUserName());
+        username_label.setText(ClientEXE.profile.getUsername());
         location_label.setText(ClientEXE.profile.getLocation());
         birthdate_label.setText(String.valueOf(ClientEXE.profile.getBirthDate()));
         followersnum_label.setText(ClientEXE.profile.followersnum.toString());
@@ -58,5 +59,15 @@ public class ProfilePageController {
 
     public void MenuPage(MouseEvent actionEvent) throws IOException {
         new PageLoader().load("MenuPage");
+    }
+
+    public void followersList(MouseEvent mouseEvent) throws IOException {
+        ClientEXE.selectedProfile=ClientEXE.profile;
+        new PageLoader().load("FollowersList");
+    }
+
+    public void followingsList(MouseEvent mouseEvent) throws IOException {
+        ClientEXE.selectedProfile=ClientEXE.profile;
+        new PageLoader().load("FollowingsList");
     }
 }

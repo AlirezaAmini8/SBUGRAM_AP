@@ -17,7 +17,7 @@ public class ViewCommentsController {
         //show the comment array in list view
         commentlist.setItems(FXCollections.observableArrayList(API.viewcomments(ClientEXE.toCommentPost)));
         //customize each cell of messageList with new graphic object PostItem
-        commentlist.setCellFactory(messageList-> new MessageItem());
+        commentlist.setCellFactory(messageListView-> new MessageItem());
     }
     public void goback(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load(ClientEXE.profile.getWasWhere());

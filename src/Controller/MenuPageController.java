@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class MenuPageController {
     public Button Profile_button;
-    public Button Directmsg_button;
     public Button newPost_button;
     public Button Logout_button;
     public ImageView goBack_button;
@@ -22,9 +21,6 @@ public class MenuPageController {
         new PageLoader().load("ProfilePage");
     }
 
-    public void Directmsg(ActionEvent actionEvent) {
-        //
-    }
 
     public void newPost(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("AddPost");

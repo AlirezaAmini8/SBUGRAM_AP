@@ -3,60 +3,70 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProfilePageController">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controller.ProfilePageController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="450.0">
          <children>
-            <AnchorPane layoutX="-1.0" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);">
-               <children>
-                  <ImageView fx:id="profile_image" fitHeight="134.0" fitWidth="153.0" layoutX="25.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="name_label" layoutX="257.0" layoutY="64.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="username_label" layoutX="257.0" layoutY="96.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="location_label" layoutX="257.0" layoutY="124.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="birthdate_label" layoutX="257.0" layoutY="161.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="68.0" layoutY="203.0" text="Followers:" textFill="#f7ff00" />
-                  <Label fx:id="followersnum_label" layoutX="121.0" layoutY="203.0" prefHeight="17.0" prefWidth="64.0" textFill="#00f5ff" />
-                  <Label layoutX="241.0" layoutY="203.0" text="Followings:" textFill="#f7ff00" />
-                  <Label fx:id="followingsnum_label" layoutX="304.0" layoutY="203.0" prefHeight="17.0" prefWidth="64.0" textFill="#00f5ff" />
-                  <Button fx:id="updateinfo_button" layoutX="113.0" layoutY="261.0" mnemonicParsing="false" onAction="#updateinfo" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: rgb(84, 153, 199);" text="update info" textFill="#040b83" />
-                  <Button fx:id="deleteaccount_button" layoutX="225.0" layoutY="261.0" mnemonicParsing="false" onAction="#deleteaccount" style="-fx-background-color: rgb(84, 153, 199);" text="delete account" textFill="#040b83" />
-                  <ImageView fx:id="ManuPage_button" fitHeight="35.0" fitWidth="33.0" layoutX="25.0" layoutY="7.0" onMouseClicked="#MenuPage">
-                     <image>
-                        <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_menu_40px.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="198.0" layoutY="96.0" prefWidth="55.0" text="username:" textFill="#f7ff00" />
-                  <Label layoutX="199.0" layoutY="161.0" text="birthdate:" textFill="#f7ff00" />
-                  <Label layoutX="208.0" layoutY="64.0" text="Name:" textFill="#f7ff00" />
-                  <Label layoutX="201.0" layoutY="124.0" text="Location:" textFill="#f7ff00" />
-               </children>
-            </AnchorPane>
+            <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <AnchorPane layoutX="-1.0" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);">
+                           <children>
+                              <ImageView fx:id="profile_image" fitHeight="134.0" fitWidth="153.0" layoutX="25.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="name_label" layoutX="257.0" layoutY="64.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="username_label" layoutX="257.0" layoutY="96.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="location_label" layoutX="257.0" layoutY="124.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="birthdate_label" layoutX="257.0" layoutY="161.0" prefHeight="17.0" prefWidth="177.0" textFill="#00f5ff">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="followers" layoutX="68.0" layoutY="203.0" onMouseClicked="#followersList" text="Followers:" textFill="#f7ff00" />
+                              <Label fx:id="followersnum_label" layoutX="121.0" layoutY="203.0" prefHeight="17.0" prefWidth="64.0" textFill="#00f5ff" />
+                              <Label fx:id="followings" layoutX="241.0" layoutY="203.0" onMouseClicked="#followingsList" text="Followings:" textFill="#f7ff00" />
+                              <Label fx:id="followingsnum_label" layoutX="304.0" layoutY="203.0" prefHeight="17.0" prefWidth="64.0" textFill="#00f5ff" />
+                              <Button fx:id="updateinfo_button" layoutX="113.0" layoutY="261.0" mnemonicParsing="false" onAction="#updateinfo" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: rgb(84, 153, 199);" text="update info" textFill="#040b83" />
+                              <Button fx:id="deleteaccount_button" layoutX="225.0" layoutY="261.0" mnemonicParsing="false" onAction="#deleteaccount" style="-fx-background-color: rgb(84, 153, 199);" text="delete account" textFill="#040b83" />
+                              <ImageView fx:id="ManuPage_button" fitHeight="35.0" fitWidth="33.0" layoutX="25.0" layoutY="7.0" onMouseClicked="#MenuPage">
+                                 <image>
+                                    <Image url="file:/C:/Users/admin/AppData/Local/Temp/icons8_menu_40px.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="198.0" layoutY="96.0" prefWidth="55.0" text="username:" textFill="#f7ff00" />
+                              <Label layoutX="199.0" layoutY="161.0" text="birthdate:" textFill="#f7ff00" />
+                              <Label layoutX="208.0" layoutY="64.0" text="Name:" textFill="#f7ff00" />
+                              <Label layoutX="201.0" layoutY="124.0" text="Location:" textFill="#f7ff00" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="450.0">
+                     <children>
+                        <ListView fx:id="listView" layoutX="-2.0" layoutY="-1.0" prefHeight="353.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" />
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="450.0">
-         <children>
-            <ListView fx:id="listView" layoutX="-2.0" layoutY="-1.0" prefHeight="353.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" />
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+  </content>
+</ScrollPane>

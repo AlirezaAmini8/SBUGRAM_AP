@@ -22,6 +22,7 @@ public class SignUpPageController {
     public Label unsuccessful_label;
     public Profile profile;
     public byte[] photo;
+    public String path;
     @FXML
     public Button Loginbutton;
     public Button sign_up_button;
@@ -41,7 +42,7 @@ public class SignUpPageController {
         new PageLoader().load("Login");
     }
 
-    public void SignUp(ActionEvent actionEvent) {
+    public void SignUp(ActionEvent actionEvent) throws IOException {
         if (!ClientNetworker.isConnected()){
             PageLoader.showalert("SBU GRAM","Not connected to server","you are not connected to server yet, please use connection panel!");
             return;
@@ -55,21 +56,34 @@ public class SignUpPageController {
                 profile.setBirthDate(BirthDate.getText());
                 profile.setName(Name.getText());
                 profile.setLastName(LastName.getText());
-                profile.setProfilePhoto(photo);
+                if(photo!=null) {
+                    profile.setProfilePhoto(photo);
+                    profile.setPath(path);
+                }else{
+                    InputStream input = new FileInputStream(new File("C:\\Users\\admin\\Desktop\\JFX\\images\\user.jpg").toURI().toString());
+                    profile.setPath("C:\\Users\\admin\\Desktop\\JFX\\images\\user.jpg");
+                    DataInputStream dataInputStream=new DataInputStream(input);
+                    photo = dataInputStream.readAllBytes();
+                }
                 profile.setPassword(password_field.getText());
-                if (API.signUp(profile)) {
+                if (API.signUp(profile,profile.getPath())) {
                     ClientEXE.setProfile(profile);
+                    photo=null;
                     unsuccessful_label.setVisible(false);
+                    failedusername_label.setVisible(false);
                     successful_label.setVisible(true);
                 } else {
                     successful_label.setVisible(false);
+                    failedusername_label.setVisible(false);
                     unsuccessful_label.setVisible(true);
                 }
             } else {
                 failedusername_label.setVisible(true);
+                successful_label.setVisible(false);
+                unsuccessful_label.setVisible(false);
             }
         }else{
-            PageLoader.showalert("SBU GRAM","Invalid password","Password should be at least 8 characters and contains small,capital letters and numbers");
+            PageLoader.showalert("SBU GRAM","Invalid password","Password should be at least 8 characters and contains letters and numbers.It shouldn't have space between words.");
         }
     }
 
@@ -78,9 +92,10 @@ public class SignUpPageController {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
         profile_image.setImage(new Image(Paths.get(String.valueOf(selectedFile)).toUri().toString()));
+        path=Paths.get(String.valueOf(selectedFile)).toUri().toString();
         InputStream input = new FileInputStream(selectedFile);
         DataInputStream dataInputStream=new DataInputStream(input);
-        photo=dataInputStream.readAllBytes();
+        photo = dataInputStream.readAllBytes();
     }
 
     public boolean isValid(String password)

@@ -16,6 +16,7 @@ public class TimeLineController {
     public ImageView Menu_button;
     public ImageView refresh_button;
     public ListView<Post> Listview;
+    public ImageView search_button;
 
 
     public void initialize() {
@@ -32,5 +33,9 @@ public class TimeLineController {
 
     public void refreshPosts(MouseEvent actionEvent) throws IOException {
         new PageLoader().load("TimeLine");
+    }
+
+    public void Search(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("Search");
     }
 }

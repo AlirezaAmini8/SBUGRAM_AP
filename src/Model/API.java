@@ -24,10 +24,11 @@ public class API{
         if ( recieved.get("answer") == null ) return null;
         return (Profile) recieved.get("answer");
     }
-    public static Boolean signUp(Profile profile){
+    public static Boolean signUp(Profile profile,String path){
         Map<String,Object> toSend = new HashMap<>();
         toSend.put("command", Command.SIGNUP);
         toSend.put("profile", profile);
+        toSend.put("path",path);
         Map<String,Object> recieved = ClientNetworker.serve(toSend);
         if ( recieved.get("answer") == null ) return null;
         return (Boolean) recieved.get("answer");
@@ -55,10 +56,11 @@ public class API{
         Map<String,Object> recieved=ClientNetworker.serve(toSend);
         return (boolean) recieved.get("answer");
     }
-    public static void addpost( Post post){
+    public static void addpost( Post post,String path){
         Map<String,Object> toSend=new HashMap<>();
         toSend.put("command", Command.ADD_POST);
         toSend.put("post",post);
+        toSend.put("path",path);
         ClientNetworker.serve(toSend);
     }
     public static boolean likepost(Profile profile,Post post,boolean haslike){
@@ -85,10 +87,11 @@ public class API{
         if ( recieved.get("answer") == null ) return false;
         return (Boolean) recieved.get("answer");
     }
-    public static void updateinfo(Profile profile){
+    public static void updateinfo(Profile profile,String path){
         Map<String,Object> toSend = new HashMap<>();
         toSend.put("command", Command.UPDATE_INFO);
         toSend.put("profile", profile);
+        toSend.put("path",path);
        ClientNetworker.serve(toSend);
     }
     public static void deleteaccount(Profile profile){
@@ -125,11 +128,65 @@ public class API{
         Map<String,Object> recieved = ClientNetworker.serve(toSend);
         return (List<Message>)  recieved.get("answer");
     }
-    public static void addcomment(Post post, Message message){
+    public static void addcomment(Profile profile,Post post, Message message){
         Map<String,Object> toSend=new HashMap<>();
         toSend.put("command", Command.ADD_COMMENT);
+        toSend.put("profile",profile);
         toSend.put("post",post);
         toSend.put("comment",message);
         ClientNetworker.serve(toSend);
+    }
+    public static Collection<Profile> getprofiles(){
+        Map<String,Object> toSend=new HashMap<>();
+        toSend.put("command", Command.GET_PROFILES);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        if ( recieved.get("answer") == null ) return null;
+        return (Collection<Profile>) recieved.get("answer");
+    }
+    public static boolean follow(Profile profile,Profile followed,boolean hasfollow){
+        Map<String,Object> toSend=new HashMap<>();
+        toSend.put("command",Command.FOLLOW);
+        toSend.put("profile",profile);
+        toSend.put("followedProfile",followed);
+        toSend.put("follow",hasfollow);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (boolean) recieved.get("answer");
+    }
+    public static void updateprofile(Profile profile1,Profile followed){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Command.UPDATE_PROFILE);
+        toSend.put("profile",profile1);
+        toSend.put("followedProfile",followed);
+        ClientNetworker.serve(toSend);
+    }
+    public static boolean getpost(Profile profile,Post post){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Command.GET_POST);
+        toSend.put("profile",profile);
+        toSend.put("post",post);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (boolean) recieved.get("answer");
+    }
+    public static void getinfo(Profile profile,Profile getprofile,String path){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Command.GET_INFO);
+        toSend.put("profile",profile);
+        toSend.put("getprofile",getprofile);
+        toSend.put("path",path);
+        ClientNetworker.serve(toSend);
+    }
+    public static List<Profile> followerslist(Profile profile){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Command.FOLLOWERS_LIST);
+        toSend.put("profile",profile);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (List<Profile>) recieved.get("answer");
+    }
+    public static List<Profile> followingslist(Profile profile){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Command.FOLLOWINGS_LIST);
+        toSend.put("profile",profile);
+        Map<String,Object> recieved=ClientNetworker.serve(toSend);
+        return (List<Profile>) recieved.get("answer");
     }
 }

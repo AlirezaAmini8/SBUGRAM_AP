@@ -4,9 +4,9 @@ import Model.Post;
 
 import java.io.Serializable;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Profile implements Serializable {
-
     private final String username;
     private String password;
     private String name;
@@ -15,13 +15,56 @@ public class Profile implements Serializable {
     private String location;
     private String favoriteColor;
     private byte[] profilePhoto;
-    public Integer followersnum=0;
-    public Integer followingsnum=0;
+    public AtomicInteger followersnum=new AtomicInteger(0);
+    public AtomicInteger followingsnum=new AtomicInteger(0);
+
+
+
     public Vector<Profile> followers=new Vector<>();
     public Vector<Profile> folowings=new Vector<>();
     public Vector<Post> likepost=new Vector<>();
     public String wasWhere;
+    public String path;
 
+    public Vector<Profile> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Vector<Profile> followers) {
+        this.followers = followers;
+    }
+
+    public Vector<Profile> getFolowings() {
+        return folowings;
+    }
+
+    public void setFolowings(Vector<Profile> folowings) {
+        this.folowings = folowings;
+    }
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public AtomicInteger getFollowersnum() {
+        return followersnum;
+    }
+
+    public void setFollowersnum(Integer followersnum) {
+        this.followersnum = new AtomicInteger(followersnum);
+    }
+
+    public AtomicInteger getFollowingsnum() {
+        return followingsnum;
+    }
+
+    public void setFollowingsnum(Integer followingsnum) {
+        this.followingsnum=new AtomicInteger(followingsnum)
+        ;
+    }
     public String getWasWhere() {
         return wasWhere;
     }
@@ -46,15 +89,14 @@ public class Profile implements Serializable {
     public boolean equals(Object obj) {
         if(obj == null) return false;
         try{
-            return this.username.equals(((Profile)obj).getUserName());
+            return this.username.equals(((Profile)obj).getUsername());
         }
         catch(Exception e){
             return false;
         }
     }
 
-
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
 
@@ -93,8 +135,8 @@ public class Profile implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public Integer getBirthDate(){
-        return Integer.parseInt(birthDate);
+    public String getBirthDate(){
+        return birthDate;
     }
 
     public String getLastName() {

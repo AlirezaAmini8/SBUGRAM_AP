@@ -22,16 +22,17 @@ public class AddCommentController {
         new PageLoader().load(ClientEXE.profile.getWasWhere());
     }
 
-    public void Publish(ActionEvent actionEvent) {
-        currentcomment.setWriter(profile.getUserName());
+    public void Publish(ActionEvent actionEvent) throws IOException {
+        currentcomment.setWriter(profile.getUsername());
         currentcomment.setDescription(Description_field.getText());
         currentcomment.setTime(Time.getTime());
-        API.addcomment(ClientEXE.toCommentPost, currentcomment);
+        API.addcomment(ClientEXE.profile,ClientEXE.toCommentPost, currentcomment);
         PageLoader.showalert("SBU GRAM", "comment added successfully.", null);
         currentcomment = new Message();
         currentcomment.setWriter("");
         currentcomment.setDescription("");
         currentcomment.setTime(null);
         Description_field.setText("");
+        new PageLoader().load(ClientEXE.profile.getWasWhere());
     }
 }

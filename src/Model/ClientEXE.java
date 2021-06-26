@@ -12,6 +12,8 @@ public class ClientEXE extends Application {
     }
     public static Profile profile;
     public static Post toCommentPost;
+    public static Profile othersprofile;
+    public static Profile selectedProfile;
     public static Map<String,Profile> profiles=new HashMap<>();
     public static List<Post> getAllpostsList() {
         return allpostsList;

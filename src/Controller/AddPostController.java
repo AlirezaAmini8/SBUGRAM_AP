@@ -22,6 +22,7 @@ public class AddPostController {
     public ImageView post_image;
     public Button Addpost_image;
     public Button publish_button;
+    public String photopath;
     Profile profile=ClientEXE.getProfile();
     Post currentpost=new Post();
 
@@ -33,19 +34,22 @@ public class AddPostController {
         FileChooser fileChooser=new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
         post_image.setImage(new Image(Paths.get(String.valueOf(selectedFile)).toUri().toString()));
+        photopath=Paths.get(String.valueOf(selectedFile)).toUri().toString();
         InputStream input = new FileInputStream(selectedFile);
         DataInputStream dataInputStream=new DataInputStream(input);
         image=dataInputStream.readAllBytes();
     }
 
     public void Publish(ActionEvent actionEvent) {
-        currentpost.setUsername(profile.getUserName());
+        currentpost.setUsername(profile.getUsername());
         currentpost.setDescription(description_field.getText());
-        currentpost.setPostimage(image);
+        if(image!=null) {
+            currentpost.setPostimage(image);
+        }
         currentpost.setTime(Time.getTime());
         currentpost.setTitle(title_field.getText());
-        currentpost.setWriter(profile.getUserName());
-        API.addpost(currentpost);
+        currentpost.setWriter(profile.getUsername());
+        API.addpost(currentpost,photopath);
         PageLoader.showalert("SBU GRAM", "post added successfully.",null);
         currentpost = new Post();
 
@@ -59,5 +63,6 @@ public class AddPostController {
         description_field.setText("");
         title_field.setText("");
         post_image.setImage(null);
+        image=null;
     }
 }

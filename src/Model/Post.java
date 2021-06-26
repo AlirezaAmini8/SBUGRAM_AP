@@ -1,17 +1,13 @@
 package Model;
 
-import Common.Time;
-
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Vector;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Post implements Comparable,Serializable {
-    private  Integer likesnum=0;
-    private Integer repostsnum=0;
+    private AtomicInteger likesnum=new AtomicInteger(0);
+    private AtomicInteger repostsnum=new AtomicInteger(0);
     private String username;
     private String title;
     private String description;
@@ -19,7 +15,6 @@ public class Post implements Comparable,Serializable {
     private String time;
     private String writer;
     public ArrayList<Message> comments=new ArrayList<>();
-
     public String getWriter() {
         return writer;
     }
@@ -39,18 +34,18 @@ public class Post implements Comparable,Serializable {
         this.time = time;
     }
     public void setRepostsnum(Integer repostsnum) {
-        this.repostsnum = repostsnum;
+        this.repostsnum = new AtomicInteger(repostsnum);
     }
 
     public void setLikesnum(Integer likesnum) {
-        this.likesnum = likesnum;
+        this.likesnum = new AtomicInteger(likesnum);
     }
 
-    public Integer getLikesnum() {
+    public AtomicInteger getLikesnum() {
         return likesnum;
     }
 
-    public Integer getRepostsnum() {
+    public AtomicInteger getRepostsnum() {
         return repostsnum;
     }
 
