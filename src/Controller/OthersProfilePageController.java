@@ -32,7 +32,9 @@ public class OthersProfilePageController {
 
     public void initialize() {
         ClientEXE.profile.setWasWhere("OthersProfilePage");
-        profile_image.setImage(new Image(new ByteArrayInputStream(ClientEXE.othersprofile.getProfilePhoto())));
+        if(ClientEXE.othersprofile.getProfilePhoto()!=null) {
+            profile_image.setImage(new Image(new ByteArrayInputStream(ClientEXE.othersprofile.getProfilePhoto())));
+        }
         name_label.setText(ClientEXE.othersprofile.getName()+" "+ClientEXE.othersprofile.getLastName());
         username_label.setText(ClientEXE.othersprofile.getUsername());
         location_label.setText(ClientEXE.othersprofile.getLocation());
@@ -52,28 +54,33 @@ public class OthersProfilePageController {
     }
 
     public void Follow(ActionEvent actionEvent) {
-        if(ClientEXE.profile.folowings.contains(ClientEXE.othersprofile)){
-            Boolean isfollow=API.follow(ClientEXE.profile,ClientEXE.othersprofile, false);
-            if (!isfollow) {
-                ClientEXE.profile.folowings.remove(ClientEXE.othersprofile);
-                ClientEXE.profile.setFollowingsnum(ClientEXE.profile.getFollowingsnum().decrementAndGet());
-                ClientEXE.othersprofile.followers.remove(ClientEXE.profile);
-                ClientEXE.othersprofile.setFollowersnum(ClientEXE.othersprofile.getFollowersnum().decrementAndGet());
-                PageLoader.showalert("SBU GRAM","Unfollow "+ClientEXE.othersprofile.getUsername(),null);
-                followingsnum_label.setText(ClientEXE.othersprofile.followersnum.toString());
+        if(!ClientEXE.profile.equals(ClientEXE.othersprofile)) {
+            if (ClientEXE.profile.folowings.contains(ClientEXE.othersprofile)) {
+                Boolean isfollow = API.follow(ClientEXE.profile, ClientEXE.othersprofile, false);
+                if (!isfollow) {
+                    ClientEXE.profile.folowings.remove(ClientEXE.othersprofile);
+                    ClientEXE.profile.setFollowingsnum(ClientEXE.profile.getFollowingsnum().decrementAndGet());
+                    ClientEXE.othersprofile.followers.remove(ClientEXE.profile);
+                    ClientEXE.othersprofile.setFollowersnum(ClientEXE.othersprofile.getFollowersnum().decrementAndGet());
+                    API.updateprofile(ClientEXE.profile,ClientEXE.othersprofile);
+                    PageLoader.showalert("SBU GRAM", "Unfollow " + ClientEXE.othersprofile.getUsername(), null);
+                    followersnum_label.setText(ClientEXE.othersprofile.followersnum.toString());
+                }
+            } else {
+                Boolean isfollow = API.follow(ClientEXE.profile, ClientEXE.othersprofile, true);
+                if (isfollow) {
+                    ClientEXE.profile.folowings.add(ClientEXE.othersprofile);
+                    ClientEXE.profile.setFollowingsnum(ClientEXE.profile.getFollowingsnum().incrementAndGet());
+                    ClientEXE.othersprofile.followers.add(ClientEXE.profile);
+                    ClientEXE.othersprofile.setFollowersnum(ClientEXE.othersprofile.getFollowersnum().incrementAndGet());
+                    API.updateprof(ClientEXE.profile,ClientEXE.othersprofile);
+                    PageLoader.showalert("SBU GRAM", "Follow " + ClientEXE.othersprofile.getUsername(), null);
+                    followersnum_label.setText(ClientEXE.othersprofile.followersnum.toString());
+                }
             }
         }else {
-            Boolean isfollow=API.follow(ClientEXE.profile, ClientEXE.othersprofile, true);
-            if (isfollow) {
-                ClientEXE.profile.folowings.add(ClientEXE.othersprofile);
-                ClientEXE.profile.setFollowingsnum(ClientEXE.profile.getFollowingsnum().incrementAndGet());
-                ClientEXE.othersprofile.followers.add(ClientEXE.profile);
-                ClientEXE.othersprofile.setFollowersnum(ClientEXE.othersprofile.getFollowersnum().incrementAndGet());
-                PageLoader.showalert("SBU GRAM","Follow "+ClientEXE.othersprofile.getUsername(),null);
-                followingsnum_label.setText(ClientEXE.othersprofile.followersnum.toString());
-            }
+            PageLoader.showalert("SBU GRAM", "You can't follow yourself:)" , null);
         }
-        API.updateprofile(ClientEXE.profile,ClientEXE.othersprofile);
     }
 
     public void followersList(MouseEvent mouseEvent) throws IOException {

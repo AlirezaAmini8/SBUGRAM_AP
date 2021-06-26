@@ -23,7 +23,6 @@ public class AddPostController {
     public Button Addpost_image;
     public Button publish_button;
     public String photopath;
-    Profile profile=ClientEXE.getProfile();
     Post currentpost=new Post();
 
     public void goback(MouseEvent actionEvent) throws IOException {
@@ -40,16 +39,16 @@ public class AddPostController {
         image=dataInputStream.readAllBytes();
     }
 
-    public void Publish(ActionEvent actionEvent) {
-        currentpost.setUsername(profile.getUsername());
+    public void Publish(ActionEvent actionEvent) throws IOException {
+        currentpost.setUsername(ClientEXE.profile.getUsername());
         currentpost.setDescription(description_field.getText());
-        if(image!=null) {
+        if(image!=null){
             currentpost.setPostimage(image);
         }
         currentpost.setTime(Time.getTime());
         currentpost.setTitle(title_field.getText());
-        currentpost.setWriter(profile.getUsername());
-        API.addpost(currentpost,photopath);
+        currentpost.setWriter(ClientEXE.profile.getUsername());
+        API.addpost(ClientEXE.profile,currentpost,photopath);
         PageLoader.showalert("SBU GRAM", "post added successfully.",null);
         currentpost = new Post();
 

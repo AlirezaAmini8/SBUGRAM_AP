@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Cotroller.ChangeInfoController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ChangeInfoController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(23,32,42);">
          <children>
@@ -80,7 +80,7 @@
                         <Image url="file:/C:/Users/admin/Desktop/JFX/images/icons8_change_96px.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="ProfilePhoto" layoutX="185.0" layoutY="204.0" mnemonicParsing="false" onAction="#AddProfilePhoto" prefHeight="29.0" prefWidth="106.0" style="-fx-background-color: rgb(84, 153, 199);" text="change photo" textFill="#040b83">
+                  <Button fx:id="ProfilePhoto" layoutX="186.0" layoutY="220.0" mnemonicParsing="false" onAction="#AddProfilePhoto" prefHeight="29.0" prefWidth="106.0" style="-fx-background-color: rgb(84, 153, 199);" text="change photo" textFill="#040b83">
                      <font>
                         <Font name="Book Antiqua Bold" size="13.0" />
                      </font>

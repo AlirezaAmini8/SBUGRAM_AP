@@ -1,5 +1,6 @@
 package Controller;
 
+import Common.Profile;
 import Model.API;
 import Model.ClientEXE;
 import Model.PageLoader;
@@ -41,11 +42,18 @@ public class PostItemController {
         writer_label.setText(post.getWriter());
         username_label.setText(post.getUsername());
         title_field.setText(post.getTitle());
-        if(post.getPostimage()!=null){
-            profileImage.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
+        for(Profile profile:API.getprofiles()){
+            if(post.getWriter().equals(profile.getUsername())){
+                if(profile.getProfilePhoto()!=null) {
+                    profileImage.setImage(new Image(new ByteArrayInputStream(profile.getProfilePhoto())));
+                }
+            }
         }
+
         postTime.setText(post.getTime());
-        PostImage.setImage(new Image(new ByteArrayInputStream(post.getPostimage())));
+        if(post.getPostimage()!=null) {
+            PostImage.setImage(new Image(new ByteArrayInputStream(post.getPostimage())));
+        }
         Description_field.setText(post.getDescription());
         likesNum_label.setText(String.valueOf(post.getLikesnum()));
         repostsNum_label.setText(String.valueOf(post.getRepostsnum()));
@@ -53,11 +61,9 @@ public class PostItemController {
     }
 
     public synchronized void Repost(MouseEvent actionEvent) {
-        Post lastpost=post;
+        repostsNum_label.setText(String.valueOf(post.getRepostsnum().get()+1));
         post.setRepostsnum(post.getRepostsnum().incrementAndGet());
-        repostsNum_label.setText(post.getRepostsnum().toString());
         API.repost(ClientEXE.profile,post);
-        API.updatepost(ClientEXE.profile,lastpost,post);
         PageLoader.showalert("SBU GRAM","You reposted this post.",null);
     }
 

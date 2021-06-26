@@ -109,6 +109,9 @@ public class ClientHandler implements Runnable {
                     case FOLLOWINGS_LIST:
                         answer=API.followingslist(income);
                         break;
+                    case UPDATE_PROF:
+                        answer=API.updateprof(income);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

@@ -30,8 +30,9 @@ public class ProfilePageController {
 
     public void initialize() {
         ClientEXE.profile.setWasWhere("ProfilePage");
-
-        profile_image.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
+        if(ClientEXE.profile.getProfilePhoto()!=null) {
+            profile_image.setImage(new Image(new ByteArrayInputStream(ClientEXE.profile.getProfilePhoto())));
+        }
         name_label.setText(ClientEXE.profile.getName()+" "+ClientEXE.profile.getLastName());
         username_label.setText(ClientEXE.profile.getUsername());
         location_label.setText(ClientEXE.profile.getLocation());
@@ -40,7 +41,7 @@ public class ProfilePageController {
         followingsnum_label.setText(ClientEXE.profile.followingsnum.toString());
 
         //show the post array in list view
-        listView.setItems(FXCollections.observableArrayList(API.getmyposts(ClientEXE.getProfile())));
+        listView.setItems(FXCollections.observableArrayList(API.getmyposts(ClientEXE.profile)));
 
         //customize each cell of postList with new graphic object PostItem
         listView.setCellFactory(postList -> new PostItem());

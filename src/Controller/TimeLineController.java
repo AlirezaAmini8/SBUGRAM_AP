@@ -22,7 +22,7 @@ public class TimeLineController {
     public void initialize() {
         ClientEXE.profile.setWasWhere("TimeLine");
         //show the post array in list view
-        Listview.setItems(FXCollections.observableArrayList(API.timeLine()));
+        Listview.setItems(FXCollections.observableArrayList(API.timeLine(ClientEXE.profile)));
         //customize each cell of postList with new graphic object PostItem
         Listview.setCellFactory( postList -> new PostItem());
     }

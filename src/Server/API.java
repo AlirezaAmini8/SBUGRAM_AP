@@ -1,6 +1,7 @@
 package Server;
 
 import Common.*;
+import Model.ClientEXE;
 import Model.Message;
 import Model.Post;
 
@@ -87,9 +88,14 @@ public class API {
         return ans;
     }
     public static Map<String,Object> addpost(Map<String ,Object> income) {
+        Profile profile= (Profile) income.get("profile");
         Post newpost= (Post) income.get("post");
         String path= (String) income.get("path");
+        if(profile.getProfilePhoto()!=null) {
+            newpost.setProfilePhoto(profile.getProfilePhoto());
+        }
         ServerEXE.posts.add(newpost);
+        ServerEXE.profiles.get(profile.getUsername()).sharedposts.add(newpost);
         DBManager.getInstance().updateDataBase();
         Map<String,Object> ans=new HashMap<>();
         ans.put("command",Command.ADD_POST);
@@ -117,8 +123,8 @@ public class API {
     public static Map<String,Object> repost(Map<String ,Object> income) {
         Profile profile= (Profile) income.get("profile");
         Post post= (Post) income.get("repost");
-        Post repost=post;
-        ServerEXE.posts.add(repost);
+        ServerEXE.posts.get(ServerEXE.posts.indexOf(post)).setRepostsnum(ServerEXE.posts.get(ServerEXE.posts.indexOf(post)).getRepostsnum().incrementAndGet());
+        ServerEXE.profiles.get(profile.getUsername()).sharedposts.add(post);
         DBManager.getInstance().updateDataBase();
 
         Map<String,Object> ans=new HashMap<>();
@@ -140,8 +146,26 @@ public class API {
 
         Profile newProfile = (Profile) income.get("profile");
         String path= (String) income.get("path");
-        String username = newProfile.getUsername();
-        ServerEXE.profiles.replace(username,newProfile);
+        byte[] image= (byte[]) income.get("image");
+        String name= (String) income.get("name");
+        String lastname= (String) income.get("lastname");
+        String location= (String) income.get("location");
+        String birthdate= (String) income.get("birthdate");
+        if(image!=null) {
+            ServerEXE.profiles.get(newProfile.getUsername()).setProfilePhoto(image);
+        }
+        if(name!=null) {
+            ServerEXE.profiles.get(newProfile.getUsername()).setName(name);
+        }
+        if(lastname!=null) {
+            ServerEXE.profiles.get(newProfile.getUsername()).setLastName(lastname);
+        }
+        if(location!=null) {
+            ServerEXE.profiles.get(newProfile.getUsername()).setLocation(location);
+        }
+        if(birthdate!=null) {
+            ServerEXE.profiles.get(newProfile.getUsername()).setBirthDate(birthdate);
+        }
         DBManager.getInstance().updateDataBase(); // save to local file
 
         Map<String,Object> ans = new HashMap<>();
@@ -174,24 +198,24 @@ public class API {
         return ans;
     }
     public static Map<String,Object> timeLine (Map<String,Object> income) {
-        Collections.sort(ServerEXE.posts);
+        Profile profile= (Profile) income.get("profile");
+        Vector<Post> followingspost=new Vector<>();
+        followingspost.addAll(ServerEXE.profiles.get(profile.getUsername()).getSharedposts());
+        for(Profile newprofile: ServerEXE.profiles.get(profile.getUsername()).getFolowings()){
+            followingspost.addAll(ServerEXE.profiles.get(newprofile.getUsername()).getSharedposts());
+        }
+        Collections.sort(followingspost);
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.TIME_LINE);
-        ans.put("answer",new ArrayList<>(ServerEXE.posts));
+        ans.put("answer",new ArrayList<>(followingspost));
         return ans;
     }
     public static Map<String,Object> getmyposts(Map<String,Object> income){
         Profile profile= (Profile) income.get("profile");
-        Vector<Post> mypostslist=new Vector<>();
-        for(Post post: ServerEXE.posts){
-            if(post.getUsername().equals(profile.getUsername())){
-                mypostslist.add(post);
-            }
-        }
-        Collections.sort(mypostslist);
+        Collections.sort(ServerEXE.profiles.get(profile.getUsername()).sharedposts);
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.MY_POSTS);
-        ans.put("answer",new ArrayList<>(mypostslist));
+        ans.put("answer",new ArrayList<>(ServerEXE.profiles.get(profile.getUsername()).sharedposts));
         System.out.println(profile.getUsername() +"get posts list.");
         System.out.println("time :"+Time.getTime() );
         return ans;
@@ -202,6 +226,8 @@ public class API {
         Post newPost=(Post) income.get("newpost");
         ServerEXE.posts.remove(lastPost);
         ServerEXE.posts.add(newPost);
+        ServerEXE.profiles.get(profile.getUsername()).sharedposts.remove(lastPost);
+        ServerEXE.profiles.get(profile.getUsername()).sharedposts.add(newPost);
         ServerEXE.profiles.replace(profile.getUsername(),profile);
         DBManager.getInstance().updateDataBase();
 
@@ -213,20 +239,17 @@ public class API {
      }
     public static Map<String,Object> viewcomments (Map<String,Object> income) {
         Post post= (Post) income.get("post");
-        ServerEXE.posts.get(ServerEXE.posts.indexOf(post));
-
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.VIEW_COMMENTS);
-        ans.put("answer",new ArrayList<>(post.comments));
+        ans.put("answer",new ArrayList<>(ServerEXE.posts.get(ServerEXE.posts.indexOf(post)).comments));
         return ans;
     }
     public static Map<String,Object> addcomment(Map<String,Object> income) {
         Profile profile= (Profile) income.get("profile");
         Post post= (Post) income.get("post");
         Message message= (Message) income.get("comment");
-        ServerEXE.posts.remove(post);
-        post.comments.add(message);
-        ServerEXE.posts.add(post);
+        ServerEXE.posts.get(ServerEXE.posts.indexOf(post)).comments.add(message);
+        ServerEXE.profiles.get(post.getUsername()).sharedposts.get(ServerEXE.posts.indexOf(post)).comments.add(message);
         DBManager.getInstance().updateDataBase();
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.ADD_COMMENT);
@@ -261,8 +284,27 @@ public class API {
     public static Map<String,Object> updateprofile(Map<String,Object> income){
         Profile profile= (Profile) income.get("profile");
         Profile followed= (Profile) income.get("followedProfile");
-        ServerEXE.profiles.replace(profile.getUsername(),profile);
-        ServerEXE.profiles.replace(followed.getUsername(),followed);
+        ServerEXE.profiles.get(profile.getUsername()).folowings.remove(followed);
+        ServerEXE.profiles.get(profile.getUsername()).setFollowingsnum(ServerEXE.profiles.get(profile.getUsername()).getFollowingsnum().decrementAndGet());
+        ServerEXE.profiles.get(followed.getUsername()).followers.remove(profile);
+        ServerEXE.profiles.get(followed.getUsername()).setFollowersnum(ServerEXE.profiles.get(followed.getUsername()).getFollowersnum().decrementAndGet());
+
+        DBManager.getInstance().updateDataBase();
+
+        Map<String,Object> ans = new HashMap<>();
+        ans.put("command",Command.UPDATE_PROFILE);
+        ans.put("answer",new Boolean(true));
+
+        return ans;
+    }
+    public static Map<String,Object> updateprof(Map<String,Object> income){
+        Profile profile= (Profile) income.get("profile");
+        Profile followed= (Profile) income.get("followedProfile");
+        ServerEXE.profiles.get(profile.getUsername()).folowings.add(followed);
+        ServerEXE.profiles.get(profile.getUsername()).setFollowingsnum(ServerEXE.profiles.get(profile.getUsername()).getFollowingsnum().incrementAndGet());
+        ServerEXE.profiles.get(followed.getUsername()).followers.add(profile);
+        ServerEXE.profiles.get(followed.getUsername()).setFollowersnum(ServerEXE.profiles.get(followed.getUsername()).getFollowersnum().incrementAndGet());
+
         DBManager.getInstance().updateDataBase();
 
         Map<String,Object> ans = new HashMap<>();
@@ -299,14 +341,14 @@ public class API {
         Profile profile= (Profile) income.get("profile");
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.FOLLOWERS_LIST);
-        ans.put("answer",new ArrayList<>(profile.getFollowers()));
+        ans.put("answer",new ArrayList<>(ServerEXE.profiles.get(profile.getUsername()).getFollowers()));
         return ans;
     }
     public  static Map<String,Object> followingslist(Map<String,Object> income){
         Profile profile= (Profile) income.get("profile");
         Map<String,Object> ans = new HashMap<>();
         ans.put("command",Command.FOLLOWINGS_LIST);
-        ans.put("answer",new ArrayList<>(profile.getFolowings()));
+        ans.put("answer",new ArrayList<>(ServerEXE.profiles.get(profile.getUsername()).getFolowings()));
         return ans;
     }
 }

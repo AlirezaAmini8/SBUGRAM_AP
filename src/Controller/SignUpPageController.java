@@ -59,11 +59,6 @@ public class SignUpPageController {
                 if(photo!=null) {
                     profile.setProfilePhoto(photo);
                     profile.setPath(path);
-                }else{
-                    InputStream input = new FileInputStream(new File("C:\\Users\\admin\\Desktop\\JFX\\images\\user.jpg").toURI().toString());
-                    profile.setPath("C:\\Users\\admin\\Desktop\\JFX\\images\\user.jpg");
-                    DataInputStream dataInputStream=new DataInputStream(input);
-                    photo = dataInputStream.readAllBytes();
                 }
                 profile.setPassword(password_field.getText());
                 if (API.signUp(profile,profile.getPath())) {
@@ -83,7 +78,7 @@ public class SignUpPageController {
                 unsuccessful_label.setVisible(false);
             }
         }else{
-            PageLoader.showalert("SBU GRAM","Invalid password","Password should be at least 8 characters and contains letters and numbers.It shouldn't have space between words.");
+            PageLoader.showalert("SBU GRAM","Invalid password","Password should be at least 8 characters and contains letters and numbers.It shouldn't have any space between words.");
         }
     }
 

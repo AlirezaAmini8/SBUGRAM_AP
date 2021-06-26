@@ -17,15 +17,16 @@ public class Profile implements Serializable {
     private byte[] profilePhoto;
     public AtomicInteger followersnum=new AtomicInteger(0);
     public AtomicInteger followingsnum=new AtomicInteger(0);
-
-
-
     public Vector<Profile> followers=new Vector<>();
     public Vector<Profile> folowings=new Vector<>();
+    public Vector<Post> sharedposts=new Vector<>();
     public Vector<Post> likepost=new Vector<>();
     public String wasWhere;
     public String path;
 
+    public Vector<Post> getSharedposts() {
+        return sharedposts;
+    }
     public Vector<Profile> getFollowers() {
         return followers;
     }

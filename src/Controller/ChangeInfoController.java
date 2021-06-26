@@ -74,7 +74,7 @@ public class ChangeInfoController {
     }
 
     public void goBack(MouseEvent mouseEvent) throws IOException {
-        API.updateinfo(ClientEXE.profile,path);
+        API.updateinfo(ClientEXE.profile,path,photo,name_field.getText(),Lastname_field.getText(),Location_field.getText(),birthDate_field.getText());
         new PageLoader().load("ProfilePage");
     }
 

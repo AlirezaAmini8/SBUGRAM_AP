@@ -4,7 +4,6 @@ import Model.API;
 import Model.ClientEXE;
 import Model.PageLoader;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -53,7 +52,7 @@ public class ForgotPasswordController {
                     }
                 } else {
                     successful_label.setVisible(false);
-                    PageLoader.showalert("SBU GRAM","Invalid password","Password should be at least 8 characters and contains letters and numbers.It shouldn't have space between words.");
+                    PageLoader.showalert("SBU GRAM","Invalid password","Password should be at least 8 characters and contains letters and numbers.It shouldn't have any space between words.");
 
                 }
             }else{

@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Post implements Comparable,Serializable {
     private AtomicInteger likesnum=new AtomicInteger(0);
     private AtomicInteger repostsnum=new AtomicInteger(0);
+    private byte[] profilePhoto;
     private String username;
     private String title;
     private String description;
@@ -15,6 +16,13 @@ public class Post implements Comparable,Serializable {
     private String time;
     private String writer;
     public ArrayList<Message> comments=new ArrayList<>();
+    public byte[] getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(byte[] profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
     public String getWriter() {
         return writer;
     }
